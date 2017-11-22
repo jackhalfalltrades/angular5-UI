@@ -1,7 +1,15 @@
 .login-box {
     padding-top: 90px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif; */
 }
+
+.help-block {
+	color: red;
+}
+.panel-body>.form-group input {
+	border: 1px solid red;
+}
+
 .panel-login {
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -37,7 +45,7 @@
 	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
 	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
 }
-.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+.panel-login input.ng-invalid {
 	height: 45px;
 	border: 1px solid #ddd;
 	font-size: 16px;
@@ -45,6 +53,16 @@
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
 }
+
+.panel-login input.ng-invalid.ng-touched {
+	height: 45px;
+	border: 1px solid red;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
 .panel-login input:hover,
 .panel-login input:focus {
 	outline:none;
@@ -70,30 +88,6 @@
 	background-color: #53A3CD;
 	border-color: #53A3CD;
 }
-.forgot-password {
-	text-decoration: underline;
-	color: #888;
-}
-.forgot-password:hover,
-.forgot-password:focus {
-	text-decoration: underline;
-	color: #666;
-}
-
-.btn-register {
-	background-color: #1CB94E;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #1CB94A;
-}
-.btn-register:hover,
-.btn-register:focus {
-	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+input.ng-invalid.ng-touched {
+	border: 1px solid red;
 }

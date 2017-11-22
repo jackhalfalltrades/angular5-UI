@@ -1,0 +1,38 @@
+.nav-title {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.nav-title, .nav-menu {
+    padding-top: 32px;
+}
+
+.nav-menu, .nav-title, .nav.navbar-nav li a {
+    color: rgb(252, 252, 252);
+}
+
+.navbar {
+    background-color: #003b64;
+    height: 85px;
+}
+
+.nav-menu {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.nav-menu:hover, .nav-menu::selection, .nav-menu:focus {
+    background: none;
+    background-color: transparent;
+    outline: none;
+}
+
+li.dropdown.active.open > a, 
+li.dropdown.active.open > ul.dropdown-menu a:hover,
+li.dropdown.open > a, 
+li.dropdown.open > ul.dropdown-menu a:hover
+{
+  background-color:transparent;
+  border-color:transparent;
+  outline: none;
+}

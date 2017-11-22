@@ -14,30 +14,32 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="login-form" class="login" style="display: block;">
+                <form [formGroup]="loginForm" id="login-form" class="login" style="display: block;" (ngSubmit)="onSubmit()">
                   <div class="form-group">
                     <div style="margin-bottom: 25px" class="input-group">
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                       </span>
-                      <input id="login-username" type="text" class="form-control" name="username" placeholder="username" #userNameInput>
+                      <input id="login-username" type="text" class="form-control" name="username" placeholder="username" formControlName="username">
                     </div>
+                    <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched" class="help-block">Please enter a valid username</span>
                   </div>
                   <div class="form-group">
                     <div style="margin-bottom: 25px" class="input-group">
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-lock"></i>
                       </span>
-                      <input id="login-password" type="password" class="form-control" name="password" placeholder="password" #passwordInput>
+                      <input id="login-password" type="password" class="form-control" name="password" placeholder="password" formControlName="password">
                     </div>
+                    <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched" class="help-block">Please enter a valid password</span>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <button class="btn btn-primary btn-lg btn-block"
-                        (click)="onLogin(userNameInput, passwordInput)">Log In</button>
+                      <div class="col-md-6 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Log In</button>
                       </div>
                     </div>
+                    <span class="help-block" *ngIf="!isValid">Please enter valid username and password</span>
                   </div>
                 </form>
               </div>
