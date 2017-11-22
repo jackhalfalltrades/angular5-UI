@@ -1,3 +1,4 @@
+import { LoginService } from './../ng-services/login.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jobcreate.component.css']
 })
 export class JobcreateComponent implements OnInit {
+  loginStatus: Boolean = false;
+  userName: String = '';
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginStatus = this.loginService.getLoginStatus();
+    this.userName = this.loginService.getUserName();
   }
 
 }

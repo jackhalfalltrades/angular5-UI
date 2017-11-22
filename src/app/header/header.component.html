@@ -37,7 +37,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li>
+            <li *ngIf="!isLoggedIn">
               <a routerLink="/" id="collapseMenu">
                 <i class="glyphicon glyphicon-log-in"></i> Login</a>
             </li>

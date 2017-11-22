@@ -1,4 +1,4 @@
-import { LoginService } from './../ng-services/login.service';
+import { LoginService } from '../ng-services/login.service';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { isNull } from 'util';
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  providers: [LoginService]
+  providers: []
 })
 export class LoginFormComponent implements OnInit {
   userName= '';
@@ -25,6 +25,7 @@ export class LoginFormComponent implements OnInit {
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required)
     });
+    this.loginService.emitLoginEvent();
   }
 
   onChange() {
@@ -39,7 +40,8 @@ export class LoginFormComponent implements OnInit {
     } else {
       console.log (this.loginForm);
       this.loginService.setLoginStatus(true);
-      this.loginService.setUserName(this.userName);
+      this.loginService.setUserName(this.loginForm.get('username').value);
+      this.loginService.emitLoginEvent();
       this.router.navigate(['/jobCreate']);
     }
   }
