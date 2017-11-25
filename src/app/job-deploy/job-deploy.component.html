@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="panel panel-secondary">
+    <div class="panel-heading">
+      <button class="btn btn-primary btn-lg" (click)="onClickPaneToggle(true)">New</button>
+      <button class="btn btn-primary btn-lg" (click)="onClickPaneToggle(false)">Current/History</button>
+    </div>
+  </div>
+
+    <div class="container" *ngIf="isNewPaneactive">
+      <table class="table-striped table-bordered">
+        <tr>
+          <th></th>
+          <th>Job ID</th>
+          <th>Tasks</th>
+          <th>Parameters</th>
+          <th>Impacted Applications</th>
+          <th>Timestamp</th>
+          <th>Username</th>
+          <th>Status</th>
+        </tr>
+      </table>
+    </div>
+
+    <div class="container" *ngIf="!isNewPaneactive">
+      <table class="table-striped table-bordered">
+        <tr>
+          <th></th>
+          <th>Job ID</th>
+          <th>Tasks</th>
+          <th>Parameters</th>
+          <th>Impacted Applications</th>
+          <th>Timestamp</th>
+          <th>Username</th>
+          <th>Submitted</th>
+        </tr>
+      </table>
+    </div>
+
+  </div>

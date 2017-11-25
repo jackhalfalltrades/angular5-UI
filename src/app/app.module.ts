@@ -12,6 +12,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthGaurd } from './auth/auth-gaurd.service';
 import { AppRoutingModule } from './app-routing.module';
 import { SigninComponent } from './auth/signin/signin.component';
+import { JobDeployComponent } from './job-deploy/job-deploy.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SigninComponent } from './auth/signin/signin.component';
     SigninComponent,
     HeaderComponent,
     DropdownDirective,
-    JobcreateComponent
+    JobcreateComponent,
+    JobDeployComponent
   ],
   imports: [
     MultiselectDropdownModule,

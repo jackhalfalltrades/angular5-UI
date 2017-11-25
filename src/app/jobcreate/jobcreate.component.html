@@ -1,115 +1,104 @@
-<div class="container">
-  <form class="orchestrate">
-    <div class="panel panel-group">
-      <div class="panel panel-default">
-        <div class="panel panel-body">
+<div class="container-fluid">
+  <form class="form-inline" [formGroup]="jobRenderer" (ngSubmit)="onSubmit()">
+    <div class="panel-group">
+      <div class="panel panel-secondary">
+        <div class="panel-body">
           <table>
             <tr>
               <td style="text-align: center; padding-bottom: 10px; padding-right: 20px">
                 <label for="aId">A-Id</label>
-                <input type="text" readonly class="form-control" name="aId" [(ngModel)]="userId" />
+                <input type="text" readonly class="form-control" name="userName" [(ngModel)]="userName" formControlName="userName"/>
               </td>
               <td style="text-align:center; padding-bottom: 15px; padding-right: 20px">
                 <label for="requestType">Request Type</label>
-                <div class="btn-group" id="requestType" appDropdown>
-                  <button type="button" class="form-control btn btn-default dropdown-toggle" id="requestTypeButton" data-toggle="dropdown">Select Option
-                    <span class="caret" id="selected"></span>
-                  </button>
-                  <ul class="dropdown-menu" id="requestTypeUL" role="menu">
-                    <li>
-                      <a href="#" data-maker="Incident">Incident</a>
-                    </li>
-                    <li>
-                      <a href="#" data-maker="Change">Change</a>
-                    </li>
-                  </ul>
-                </div>
+                <ss-multiselect-dropdown [options]="requestTypeOptions" [texts]="myTexts" [settings]="dropDownSettings" [(ngModel)]="requestTypeOptionsModel"
+                (ngModelChange)="onChange($event)" name="select" formControlName="requestTypeOptionsModel" [disabled]="true"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
                 <label for="ticketNumber">Ticket Number</label>
-                <input type="text" class="form-control" name="ticketNumber" [(ngModel)]="ticketNumber" />
+                <input type="text" class="form-control" name="ticketNumber" [(ngModel)]="ticketNumber" formControlName="ticketNumber"/>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
                 <label for="cerno">CER NO.</label>
-                <input type="text" class="form-control" name="cerno" [(ngModel)]="cerNo" />
+                <input type="text" class="form-control" name="cerno" [(ngModel)]="cerNo" formControlName="cerNo"/>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
                 <label for="spid">SPID</label>
-                <input type="text" class="form-control" name="spid" [(ngModel)]="spid" />
+                <input type="text" class="form-control" name="spid" [(ngModel)]="spid" formControlName="spid"/>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
                 <label for="impactedCi">Impacted CI</label>
-                <input type="text" class="form-control" name="impactedCi" [(ngModel)]="impactedCi" />
+                <input type="text" class="form-control" name="impactedCi" [(ngModel)]="impactedCi" formControlName="impactedCi"/>
               </td>
             </tr>
           </table>
         </div>
       </div>
-      <div class="panel panel-dafault">
-        <div class="panel panel-body">
+      <div class="panel panel-secondary">
+        <div class="panel-body">
           <table>
             <tr>
               <td style="text-align:center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="applications">Applications</label>
                 <ss-multiselect-dropdown [options]="applicationOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="applicationOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="applicationOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="environment">Environment</label>
                 <ss-multiselect-dropdown [options]="environemntOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="environmentOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="environmentOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="type">Type</label>
                 <ss-multiselect-dropdown [options]="typeOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="typeOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="typeOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="technology">Technology</label>
                 <ss-multiselect-dropdown [options]="technologyOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="technologyOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="technologyOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="mode">Mode</label>
                 <ss-multiselect-dropdown [options]="modeOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="modeOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="modeOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="groupingOne">Domain/Cluster</label>
                 <ss-multiselect-dropdown [options]="domainOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="domainOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="domainOptionsModel"> </ss-multiselect-dropdown>
               </td>
             </tr>
             <tr>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="groupingTwo">Profile/Cluster</label>
                 <ss-multiselect-dropdown [options]="clusterOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="clusterOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="clusterOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="vm">VM</label>
                 <ss-multiselect-dropdown [options]="vmOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="vmOptionsModel" (ngModelChange)="onChange($event)"
-                  name="select"> </ss-multiselect-dropdown>
+                  name="select" formControlName="vmOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="jvm">JVM</label>
                 <ss-multiselect-dropdown [options]="jvmOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="jvmOptionsModel" (ngModelChange)="onChange($event)"
-                  name="select"> </ss-multiselect-dropdown>
+                  name="select" formControlName="jvmOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="task">Task</label>
                 <ss-multiselect-dropdown [options]="taskOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="taskOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="taskOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="artifact">Artifact</label>
                 <ss-multiselect-dropdown [options]="artifactOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="artifactOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="artifactOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="artifactPath">Artifact Path</label>
                 <ss-multiselect-dropdown [options]="artifactPathOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="artifactPathOptionsModel"
-                  (ngModelChange)="onChange($event)" name="select"> </ss-multiselect-dropdown>
+                  (ngModelChange)="onChange($event)" name="select" formControlName="artifactPathOptionsModel"> </ss-multiselect-dropdown>
               </td>
             </tr>
           </table>

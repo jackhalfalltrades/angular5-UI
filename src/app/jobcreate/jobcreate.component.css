@@ -1,0 +1,7 @@
+.container-fluid {
+    padding-top:100px;
+}
+.panel .panel-secondary .panel-group .panel-body table .form-inline .container-fluid {
+    border: none;
+    box-shadow: none;
+}

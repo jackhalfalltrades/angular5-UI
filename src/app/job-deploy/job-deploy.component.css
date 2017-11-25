@@ -1,0 +1,15 @@
+.panel, .panel-secondary, .panel-heading {
+width: 100%;
+left: 0;
+}
+
+table { width: 100% }
+
+th { text-align: center; }
+tr, th {
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 30px;
+    vertical-align: middle;
+}
