@@ -1,5 +1,6 @@
-import { LoginService } from './../ng-services/login.service';
 import { Component, OnInit  } from '@angular/core';
+
+import { AuthService } from './../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,21 +9,19 @@ import { Component, OnInit  } from '@angular/core';
   providers: []
 })
 export class HeaderComponent implements OnInit {
-  welcomeText: String = '';
-  isLoggedIn: Boolean = false;
+  constText = 'Welcome, ';
+  isLoggedIn = false;
+  welcomeText = '';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.loginService.login
+    this.authService.loginStatusUpdated
     .subscribe(
-      (login: {userName: String, isLogin: Boolean}) => {
-        this.welcomeText = 'Welcome, ' + login.userName.valueOf();
-        this.isLoggedIn = login.isLogin.valueOf();
+      (loginDetails: { userName: string, isLoggedIn: boolean}) => {
+        this.isLoggedIn = loginDetails.isLoggedIn;
+        this.welcomeText = this.constText + loginDetails.userName;
       }
     );
-    // this.welcomeText = 'Welcome, ' + this.loginService.getUserName();
-    // this.isLoggedIn = this.loginService.getLoginStatus();
   }
-
 }
