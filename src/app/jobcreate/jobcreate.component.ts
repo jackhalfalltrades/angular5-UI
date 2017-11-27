@@ -1,99 +1,111 @@
+import { JobCreateModel } from './jobCreate.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings, MultiselectDropdown } from 'angular-2-dropdown-multiselect';
 import { Router } from '@angular/router';
 
 import { AuthService } from './../auth/auth.service';
+import { JobCreateService } from './jobcreate.service';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-jobcreate',
   templateUrl: './jobcreate.component.html',
-  styleUrls: ['./jobcreate.component.css']
+  styleUrls: ['./jobcreate.component.css'],
+  providers: [JobCreateService]
 })
 export class JobcreateComponent implements OnInit, OnChanges {
   jobRenderer: FormGroup;
-  userName = '';
-  requestType = '';
-  ticketNumber = '';
-  cerNo = '';
-  spid = '';
-  impactedCi = '';
+  jobCreateModel: JobCreateModel;
 
-  requestTypeOptions: IMultiSelectOption[];
-  applicationOptions: IMultiSelectOption[];
-  environemntOptions: IMultiSelectOption[];
-  typeOptions: IMultiSelectOption[];
-  technologyOptions: IMultiSelectOption[];
-  modeOptions: IMultiSelectOption[];
-  domainOptions: IMultiSelectOption[];
-  clusterOptions: IMultiSelectOption[];
-  vmOptions: IMultiSelectOption[];
-  jvmOptions: IMultiSelectOption[];
-  taskOptions: IMultiSelectOption[];
-  artifactOptions: IMultiSelectOption[];
-  artifactPathOptions: IMultiSelectOption[];
+  // userName = '';
+  // requestType = '';
+  // ticketNumber = '';
+  // cerNo = '';
+  // spid = '';
+  // impactedCi = '';
 
-  requestTypeOptionsModel: number[];
-  applicationOptionsModel: number[];
-  environmentOptionsModel: number[];
-  typeOptionsModel: number[];
-  technologyOptionsModel: number[];
-  modeOptionsModel: number[];
-  domainOptionsModel: number[];
-  clusterOptionsModel: number[];
-  vmOptionsModel: number[];
-  jvmOptionsModel: number[];
-  taskOptionsModel: number[];
-  artifactOptionsModel: number[];
-  artifactPathOptionsModel: number[];
 
-  // Settings configuration
-  mySettings: IMultiSelectSettings = {
-    enableSearch: true,
-    showCheckAll: true,
-    showUncheckAll: true,
-    isLazyLoad: true,
-    checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-default',
-    dynamicTitleMaxItems: 0,
-    closeOnClickOutside: true,
-    displayAllSelectedText: false,
-    containerClasses: 'dropdown-block'
-  };
+  // multiSelectEnabler: IMultiSelectSettings;
+  // singleSelectEnabler: IMultiSelectSettings;
 
-  dropDownSettings: IMultiSelectSettings = {
-    enableSearch: false,
-    showCheckAll: false,
-    showUncheckAll: false,
-    isLazyLoad: true,
-    checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-default',
-    dynamicTitleMaxItems: 1,
-    closeOnClickOutside: true,
-    displayAllSelectedText: false,
-    containerClasses: 'dropdown-block',
-    selectionLimit: 1
-  };
+  // requestTypeOptions: IMultiSelectOption[];
+  // applicationOptions: IMultiSelectOption[];
+  // environemntOptions: IMultiSelectOption[];
+  // typeOptions: IMultiSelectOption[];
+  // technologyOptions: IMultiSelectOption[];
+  // modeOptions: IMultiSelectOption[];
+  // domainOptions: IMultiSelectOption[];
+  // clusterOptions: IMultiSelectOption[];
+  // vmOptions: IMultiSelectOption[];
+  // jvmOptions: IMultiSelectOption[];
+  // taskOptions: IMultiSelectOption[];
+  // artifactOptions: IMultiSelectOption[];
+  // artifactPathOptions: IMultiSelectOption[];
 
-  // Text configuration
-  myTexts: IMultiSelectTexts = {
-    checkAll: 'Select All',
-    uncheckAll: 'Deselect All',
-    checked: 'Option Selected',
-    checkedPlural: 'Options Selected',
-    searchPlaceholder: 'Search...',
-    searchEmptyResult: 'Nothing found...',
-    searchNoRenderText: 'Type in search box to see results...',
-    defaultTitle: 'Select Options',
-    // allSelected: 'All selected'
-  };
+  // requestTypeOptionsModel: number[];
+  // applicationOptionsModel: number[];
+  // environmentOptionsModel: number[];
+  // typeOptionsModel: number[];
+  // technologyOptionsModel: number[];
+  // modeOptionsModel: number[];
+  // domainOptionsModel: number[];
+  // clusterOptionsModel: number[];
+  // vmOptionsModel: number[];
+  // jvmOptionsModel: number[];
+  // taskOptionsModel: number[];
+  // artifactOptionsModel: number[];
+  // artifactPathOptionsModel: number[];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  // // Settings configuration
+  // mySettings: IMultiSelectSettings = {
+  //   enableSearch: true,
+  //   showCheckAll: true,
+  //   showUncheckAll: true,
+  //   isLazyLoad: true,
+  //   checkedStyle: 'fontawesome',
+  //   buttonClasses: 'btn btn-default',
+  //   dynamicTitleMaxItems: 0,
+  //   closeOnClickOutside: true,
+  //   displayAllSelectedText: false,
+  //   containerClasses: 'dropdown-block'
+  // };
+
+  // dropDownSettings: IMultiSelectSettings = {
+  //   enableSearch: false,
+  //   showCheckAll: false,
+  //   showUncheckAll: false,
+  //   isLazyLoad: true,
+  //   checkedStyle: 'fontawesome',
+  //   buttonClasses: 'btn btn-default',
+  //   dynamicTitleMaxItems: 1,
+  //   closeOnClickOutside: true,
+  //   displayAllSelectedText: false,
+  //   containerClasses: 'dropdown-block',
+  //   selectionLimit: 1
+  // };
+
+  // // Text configuration
+  // myTexts: IMultiSelectTexts = {
+  //   checkAll: 'Select All',
+  //   uncheckAll: 'Deselect All',
+  //   checked: 'Option Selected',
+  //   checkedPlural: 'Options Selected',
+  //   searchPlaceholder: 'Search...',
+  //   searchEmptyResult: 'Nothing found...',
+  //   searchNoRenderText: 'Type in search box to see results...',
+  //   defaultTitle: 'Select Options',
+  //   // allSelected: 'All selected'
+  // };
+
+  // constructor(private authService: AuthService, private router: Router, private jobCreateService: JobCreateService) { }
+  constructor(private router: Router, private jobCreateService: JobCreateService) { }
 
   ngOnInit() {
-    this.jobRenderer = new FormGroup({
-      'userName': new FormControl(this.userName),
-      'requestTypeOptionsModel': new FormControl(null),
+    this.jobCreateModel = this.jobCreateService.getJobCreateModelInit();
+    this.jobRenderer = new FormGroup ({
+      'userName': new FormControl(this.jobCreateModel.getUserName()),
+      'requestTypeOptionsModel': new FormControl(this.jobCreateModel.getRequestTypeOptionsModel()),
       'ticketNumber': new FormControl(null),
       'cerNo': new FormControl(null),
       'spid': new FormControl(null),
@@ -111,70 +123,70 @@ export class JobcreateComponent implements OnInit, OnChanges {
       'artifactOptionsModel': new FormControl(null),
       'artifactPathOptionsModel': new FormControl(null)
     });
-    this.userName = this.authService.loginForm.getUserName();
-    this.requestTypeOptions = [
-      {id: 1, name: 'Incident'},
-      {id: 2, name: 'Change'}
-    ];
-    this.applicationOptions = [
-      { id: 1, name: 'Order Management System' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.environemntOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.artifactOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.artifactPathOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.clusterOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.jvmOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.domainOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.modeOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.taskOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.technologyOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.typeOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
-    this.vmOptions = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' }
-    ];
+    // this.jobCreatModel.setUserName(this.authService.loginForm.getUserName());
+    // this.jobCreatModel.setRequestTypeOptions([
+    //   {id: 1, name: 'Incident'},
+    //   {id: 2, name: 'Change'}
+    // ]);
+    // this.jobCreateModelapplicationOptions = [
+    //   { id: 1, name: 'Order Management System' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.environemntOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.artifactOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.artifactPathOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.clusterOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.jvmOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.domainOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.modeOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.taskOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.technologyOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.typeOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
+    // this.vmOptions = [
+    //   { id: 1, name: 'Option 1' },
+    //   { id: 2, name: 'Option 2' }
+    // ];
     console.log(this.jobRenderer);
   }
 
   onChange(event: any) {
-    console.log(this.applicationOptions);
+    console.log(this.jobCreateModel.getRequestTypeOptions());
   }
   ngOnChanges() {
   }
 
   onSubmit() {
-    this.router.navigate(['/jobDeploy']);
+    console.log(this.jobRenderer);
   }
 
   resetForm() {
