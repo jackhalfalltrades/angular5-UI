@@ -10,7 +10,7 @@ export class JobCreateModel {
   // Dropdown Options displayed on screen
   requestTypeOptions: IMultiSelectOption[];
   applicationOptions: IMultiSelectOption[];
-  environemntOptions: IMultiSelectOption[];
+  environmentOptions: IMultiSelectOption[];
   typeOptions: IMultiSelectOption[];
   technologyOptions: IMultiSelectOption[];
   modeOptions: IMultiSelectOption[];
@@ -23,27 +23,27 @@ export class JobCreateModel {
   artifactPathOptions: IMultiSelectOption[];
 
   // Dropdown Options selected from displayed (only the ID will be available)
-  requestTypeOptionsModel: number[];
-  applicationOptionsModel: number[];
-  environemntOptionsModel: number[];
-  typeOptionsModel: number[];
-  technologyOptionsModel: number[];
-  modeOptionsModel: number[];
-  domainOptionsModel: number[];
-  clusterOptionsModel: number[];
-  vmOptionsModel: number[];
-  jvmOptionsModel: number[];
-  taskOptionsModel: number[];
-  artifactOptionsModel: number[];
-  artifactPathOptionsModel: number[];
+  requestTypeOptionsModel: IMultiSelectOption[];
+  applicationOptionsModel: IMultiSelectOption[];
+  environmentOptionsModel: IMultiSelectOption[];
+  typeOptionsModel: IMultiSelectOption[];
+  technologyOptionsModel: IMultiSelectOption[];
+  modeOptionsModel: IMultiSelectOption[];
+  domainOptionsModel: IMultiSelectOption[];
+  clusterOptionsModel: IMultiSelectOption[];
+  vmOptionsModel: IMultiSelectOption[];
+  jvmOptionsModel: IMultiSelectOption[];
+  taskOptionsModel: IMultiSelectOption[];
+  artifactOptionsModel: IMultiSelectOption[];
+  artifactPathOptionsModel: IMultiSelectOption[];
 
   // multiselect drop down behavioural settings
   multiSelectEnabler: IMultiSelectSettings = {
     enableSearch: true,
     showCheckAll: true,
     showUncheckAll: true,
-    isLazyLoad: true,
-    checkedStyle: 'fontawesome',
+    isLazyLoad: false,
+    checkedStyle: 'glyphicon',
     buttonClasses: 'btn btn-default',
     dynamicTitleMaxItems: 0,
     closeOnClickOutside: true,
@@ -56,8 +56,8 @@ export class JobCreateModel {
     enableSearch: true,
     showCheckAll: false,
     showUncheckAll: false,
-    isLazyLoad: true,
-    checkedStyle: 'fontawesome',
+    isLazyLoad: false,
+    checkedStyle: 'glyphicon',
     buttonClasses: 'btn btn-default',
     dynamicTitleMaxItems: 1,
     autoUnselect: true,
@@ -150,12 +150,12 @@ export class JobCreateModel {
     return this.applicationOptions;
   }
 
-  setEnvironemntOptions( environemntOptions: IMultiSelectOption[] ) {
-    this.environemntOptions = environemntOptions;
+  setEnvironmentOptions( environmentOptions: IMultiSelectOption[] ) {
+    this.environmentOptions = environmentOptions;
   }
 
-  getEnvironemntOptions(): IMultiSelectOption[] {
-    return this.environemntOptions;
+  getEnvironmentOptions(): IMultiSelectOption[] {
+    return this.environmentOptions;
   }
 
   setVmOptions( vmOptions: IMultiSelectOption[] ) {
@@ -238,107 +238,107 @@ export class JobCreateModel {
     return this.clusterOptions;
   }
 
-  setRequestTypeOptionsModel( requestTypeOptionsModel: number[] ) {
+  setRequestTypeOptionsModel( requestTypeOptionsModel: IMultiSelectOption[] ) {
     this.requestTypeOptionsModel = requestTypeOptionsModel;
   }
 
-  getRequestTypeOptionsModel(): number[] {
+  getRequestTypeOptionsModel(): IMultiSelectOption[] {
     return this.requestTypeOptionsModel;
   }
 
-  setApplicationOptionsModel( applicationOptionsModel: number[]) {
+  setApplicationOptionsModel( applicationOptionsModel: IMultiSelectOption[]) {
     this.applicationOptionsModel = applicationOptionsModel;
   }
 
-  getApplicationOptionsModel(): number[] {
+  getApplicationOptionsModel(): IMultiSelectOption[] {
     return this.applicationOptionsModel;
   }
 
-  setEnvironemntOptionsModel( environemntOptionsModel: number[] ) {
-    this.environemntOptionsModel = environemntOptionsModel;
+  setEnvironmentOptionsModel( environmentOptionsModel: IMultiSelectOption[] ) {
+    this.environmentOptionsModel = environmentOptionsModel;
   }
 
-  getEnvironemntOptionsModel(): number[] {
-    return this.environemntOptionsModel;
+  getEnvironmentOptionsModel(): IMultiSelectOption[] {
+    return this.environmentOptionsModel;
   }
 
-  setVmOptionsModel( vmOptionsModel: number[] ) {
+  setVmOptionsModel( vmOptionsModel: IMultiSelectOption[] ) {
     this.vmOptionsModel = vmOptionsModel ;
   }
 
-  getVmOptionsModel(): number[] {
+  getVmOptionsModel(): IMultiSelectOption[] {
     return this.vmOptionsModel;
   }
 
-  setJvmOptionsModel( jvmOptionsModel: number[] ) {
+  setJvmOptionsModel( jvmOptionsModel: IMultiSelectOption[] ) {
     this.jvmOptionsModel = jvmOptionsModel;
   }
 
-  getJvmOptionsModel(): number[] {
+  getJvmOptionsModel(): IMultiSelectOption[] {
     return this.jvmOptionsModel;
   }
 
-  setTaskOptionsModel( taskOptionsModel: number[] ) {
+  setTaskOptionsModel( taskOptionsModel: IMultiSelectOption[] ) {
     this.taskOptionsModel = taskOptionsModel;
   }
 
-  getTaskOptionsModel(): number[] {
+  getTaskOptionsModel(): IMultiSelectOption[] {
     return this.taskOptionsModel;
   }
 
-  setArtifactOptionsModel( artifactOptionsModel: number[] ) {
+  setArtifactOptionsModel( artifactOptionsModel: IMultiSelectOption[] ) {
     this.artifactOptionsModel = artifactOptionsModel;
   }
 
-  getArtifactOptionsModel(): number[] {
+  getArtifactOptionsModel(): IMultiSelectOption[] {
     return this.artifactOptionsModel;
   }
 
-  setArtifactPathOptionsModel( artifactPathOptionsModel: number[] ) {
+  setArtifactPathOptionsModel( artifactPathOptionsModel: IMultiSelectOption[] ) {
     this.artifactPathOptionsModel = artifactPathOptionsModel;
   }
 
-  getArtifactPathOptionsModel(): number[] {
+  getArtifactPathOptionsModel(): IMultiSelectOption[] {
     return this.artifactPathOptionsModel;
   }
 
-  setTypeOptionsModel( typeOptionsModel: number[] ) {
+  setTypeOptionsModel( typeOptionsModel: IMultiSelectOption[] ) {
     this.typeOptionsModel = typeOptionsModel;
   }
 
-  getTypeOptionsModel(): number[] {
+  getTypeOptionsModel(): IMultiSelectOption[] {
     return this.typeOptionsModel;
   }
 
-  setTechnologyOptionsModel( technologyOptionsModel: number[] ) {
+  setTechnologyOptionsModel( technologyOptionsModel: IMultiSelectOption[] ) {
     this.technologyOptionsModel = technologyOptionsModel;
   }
 
-  getTechnologyOptionsModel(): number[] {
+  getTechnologyOptionsModel(): IMultiSelectOption[] {
     return this.technologyOptionsModel;
   }
 
-  setModeOptionsModel( modeOptionsModel: number[] ) {
+  setModeOptionsModel( modeOptionsModel: IMultiSelectOption[] ) {
     this.modeOptionsModel = modeOptionsModel;
   }
 
-  getModeOptionsModel(): number[] {
+  getModeOptionsModel(): IMultiSelectOption[] {
     return this.modeOptionsModel;
   }
 
-  setDomainOptionsModel( domainOptionsModel: number[] ) {
+  setDomainOptionsModel( domainOptionsModel: IMultiSelectOption[] ) {
     this.domainOptionsModel = domainOptionsModel;
   }
 
-  getDomainOptionsModel(): number[] {
+  getDomainOptionsModel(): IMultiSelectOption[] {
     return this.domainOptionsModel;
   }
 
-  setClusterOptionsModel( clusterOptionsModel: number[] ) {
+  setClusterOptionsModel( clusterOptionsModel: IMultiSelectOption[] ) {
     this.clusterOptionsModel = clusterOptionsModel;
   }
 
-  getClusterOptionsModel(): number[] {
+  getClusterOptionsModel(): IMultiSelectOption[] {
     return this.clusterOptionsModel;
   }
 

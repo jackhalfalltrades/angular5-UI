@@ -17,93 +17,15 @@ import { DISABLED } from '@angular/forms/src/model';
 export class JobcreateComponent implements OnInit, OnChanges {
   jobRenderer: FormGroup;
   jobCreateModel: JobCreateModel;
+  multiSelectOptionModel: IMultiSelectOption[];
+  requestType: string;
+  envSelected: boolean;
 
-  // userName = '';
-  // requestType = '';
-  // ticketNumber = '';
-  // cerNo = '';
-  // spid = '';
-  // impactedCi = '';
-
-
-  // multiSelectEnabler: IMultiSelectSettings;
-  // singleSelectEnabler: IMultiSelectSettings;
-
-  // requestTypeOptions: IMultiSelectOption[];
-  // applicationOptions: IMultiSelectOption[];
-  // environemntOptions: IMultiSelectOption[];
-  // typeOptions: IMultiSelectOption[];
-  // technologyOptions: IMultiSelectOption[];
-  // modeOptions: IMultiSelectOption[];
-  // domainOptions: IMultiSelectOption[];
-  // clusterOptions: IMultiSelectOption[];
-  // vmOptions: IMultiSelectOption[];
-  // jvmOptions: IMultiSelectOption[];
-  // taskOptions: IMultiSelectOption[];
-  // artifactOptions: IMultiSelectOption[];
-  // artifactPathOptions: IMultiSelectOption[];
-
-  // requestTypeOptionsModel: number[];
-  // applicationOptionsModel: number[];
-  // environmentOptionsModel: number[];
-  // typeOptionsModel: number[];
-  // technologyOptionsModel: number[];
-  // modeOptionsModel: number[];
-  // domainOptionsModel: number[];
-  // clusterOptionsModel: number[];
-  // vmOptionsModel: number[];
-  // jvmOptionsModel: number[];
-  // taskOptionsModel: number[];
-  // artifactOptionsModel: number[];
-  // artifactPathOptionsModel: number[];
-
-  // // Settings configuration
-  // mySettings: IMultiSelectSettings = {
-  //   enableSearch: true,
-  //   showCheckAll: true,
-  //   showUncheckAll: true,
-  //   isLazyLoad: true,
-  //   checkedStyle: 'fontawesome',
-  //   buttonClasses: 'btn btn-default',
-  //   dynamicTitleMaxItems: 0,
-  //   closeOnClickOutside: true,
-  //   displayAllSelectedText: false,
-  //   containerClasses: 'dropdown-block'
-  // };
-
-  // dropDownSettings: IMultiSelectSettings = {
-  //   enableSearch: false,
-  //   showCheckAll: false,
-  //   showUncheckAll: false,
-  //   isLazyLoad: true,
-  //   checkedStyle: 'fontawesome',
-  //   buttonClasses: 'btn btn-default',
-  //   dynamicTitleMaxItems: 1,
-  //   closeOnClickOutside: true,
-  //   displayAllSelectedText: false,
-  //   containerClasses: 'dropdown-block',
-  //   selectionLimit: 1
-  // };
-
-  // // Text configuration
-  // myTexts: IMultiSelectTexts = {
-  //   checkAll: 'Select All',
-  //   uncheckAll: 'Deselect All',
-  //   checked: 'Option Selected',
-  //   checkedPlural: 'Options Selected',
-  //   searchPlaceholder: 'Search...',
-  //   searchEmptyResult: 'Nothing found...',
-  //   searchNoRenderText: 'Type in search box to see results...',
-  //   defaultTitle: 'Select Options',
-  //   // allSelected: 'All selected'
-  // };
-
-  // constructor(private authService: AuthService, private router: Router, private jobCreateService: JobCreateService) { }
   constructor(private router: Router, private jobCreateService: JobCreateService) { }
 
   ngOnInit() {
     this.jobCreateModel = this.jobCreateService.getJobCreateModelInit();
-    this.jobRenderer = new FormGroup ({
+    this.jobRenderer = new FormGroup({
       'userName': new FormControl(this.jobCreateModel.getUserName()),
       'requestTypeOptionsModel': new FormControl(this.jobCreateModel.getRequestTypeOptionsModel()),
       'ticketNumber': new FormControl(null),
@@ -123,74 +45,162 @@ export class JobcreateComponent implements OnInit, OnChanges {
       'artifactOptionsModel': new FormControl(null),
       'artifactPathOptionsModel': new FormControl(null)
     });
-    // this.jobCreatModel.setUserName(this.authService.loginForm.getUserName());
-    // this.jobCreatModel.setRequestTypeOptions([
-    //   {id: 1, name: 'Incident'},
-    //   {id: 2, name: 'Change'}
-    // ]);
-    // this.jobCreateModelapplicationOptions = [
-    //   { id: 1, name: 'Order Management System' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.environemntOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.artifactOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.artifactPathOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.clusterOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.jvmOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.domainOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.modeOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.taskOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.technologyOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.typeOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    // this.vmOptions = [
-    //   { id: 1, name: 'Option 1' },
-    //   { id: 2, name: 'Option 2' }
-    // ];
-    console.log(this.jobRenderer);
+
+    this.jobRenderer.controls['applicationOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate env drop down based on selected application
+          this.jobCreateService.cascadeDropdowns('applicationOptionsModel', selectedOptions);
+        } else {
+          // clear population of environment
+          this.jobCreateModel.setEnvironmentOptions([]);
+          // cleasr selection of  environment
+          this.jobRenderer.controls['environmentOptionsModel'].setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['environmentOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate type dropdown based on selected application and env
+          this.jobCreateService.cascadeDropdowns('environmentOptionsModel', selectedOptions);
+        } else {
+          // clear population of type dropdown
+          this.jobCreateModel.setTypeOptions([]);
+          // clear selection of type dropdown
+          this.jobRenderer.controls['typeOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['typeOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate tech dropdown based on app, env, type
+          this.jobCreateService.cascadeDropdowns('typeOptionsModel', selectedOptions);
+        } else {
+          // clear population of tech dropdown
+          this.jobCreateModel.setTechnologyOptions([]);
+          // clear selection of tech dropdown
+          this.jobRenderer.controls['technologyOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['technologyOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        // populate mode dropdown based on app,env,type,tech
+        if (selectedOptions[0]) {
+          this.jobCreateService.cascadeDropdowns('technologyOptionsModel', selectedOptions);
+        } else {
+          // clear population of mode dropdown
+          this.jobCreateModel.setModeOptions([]);
+          // clear selection of mode dropdown
+          this.jobRenderer.controls['modeOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['modeOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        // populate domain options based on app, env, type, tech, mode
+        if (selectedOptions[0]) {
+          this.jobCreateService.cascadeDropdowns('modeOptionsModel', selectedOptions);
+        } else {
+          // clear population of domain dropdown
+          this.jobCreateModel.setDomainOptions([]);
+          // clear selection of domain dropdown
+          this.jobRenderer.controls['domainOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['domainOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate cluster dropdown based on app, env, type, tech, mode, domain
+          this.jobCreateService.cascadeDropdowns('domainOptionsModel', selectedOptions);
+        } else {
+          // clear population of cluster dropdown
+          this.jobCreateModel.setClusterOptions([]);
+          // clear select of cluster dropdown
+          this.jobRenderer.controls['clusterOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['clusterOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate vm dropdown based on app, env, type, tech, mode, domain, cluster
+          this.jobCreateService.cascadeDropdowns('clusterOptionsModel', selectedOptions);
+        } else {
+          // clear population of vm dropdown
+          this.jobCreateModel.setVmOptions([]);
+          // clear select of vm dropdown
+          this.jobRenderer.controls['vmOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['vmOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate jvm dropdown based on app, env, type, tech, mode, domain, cluster, vm
+          this.jobCreateService.cascadeDropdowns('vmOptionsModel', selectedOptions);
+        } else {
+          // clear population jvm dropdown
+          this.jobCreateModel.setJvmOptions([]);
+          // clear selection of jvm dropdown
+          this.jobRenderer.controls['jvmOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['jvmOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate task dropdown based on app, env, type, tech, mode, domain, cluster, vm, jvm
+          this.jobCreateService.cascadeDropdowns('jvmOptionsModel', selectedOptions);
+        } else {
+          // clear population of task dropdown
+          this.jobCreateModel.setTaskOptions([]);
+          // clear selection of task dropdown
+          this.jobRenderer.controls['taskOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['taskOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate artifact dropdown based on app, env, type, tech, mode, domain, cluster, vm, jvm, task
+         this.jobCreateService.cascadeDropdowns('taskOptionsModel', selectedOptions);
+        } else {
+          // clear population of artifact dropdown
+          this.jobCreateModel.setArtifactOptions([]);
+          // clear selection of artifact dropdown
+          this.jobRenderer.controls['artifactOptionsModel']
+            .setValue([], { emitEvent: true });
+        }
+      });
+    this.jobRenderer.controls['artifactOptionsModel'].valueChanges
+      .subscribe((selectedOptions: number[]) => {
+        if (selectedOptions[0]) {
+          // populate artifact path dropdown based on app, env, type, tech, mode, domain, cluster, vm, jvm, task, artifiact
+          this.jobCreateService.cascadeDropdowns('artifactOptionsModel', selectedOptions);
+        } else {
+          // clear population of artifact path dropdown
+          this.jobCreateModel.setArtifactPathOptions([]);
+          // clear selection of artifact path dropdown
+          this.jobRenderer.controls['artifactPathOptionsModel']
+            .setValue([], { emitevent: true });
+        }
+      });
+
   }
 
-  onChange(event: any) {
-    console.log(this.jobCreateModel.getRequestTypeOptions());
-  }
-  ngOnChanges() {
-  }
+  onChange(event: any) { }
+
+  ngOnChanges() { }
 
   onSubmit() {
     console.log(this.jobRenderer);
   }
 
-  resetForm() {
-    console.log('form is reset');
+  onReset() {
+    this.jobRenderer.reset();
   }
 
 }

@@ -13,6 +13,7 @@ import { AuthGaurd } from './auth/auth-gaurd.service';
 import { AppRoutingModule } from './app-routing.module';
 import { SigninComponent } from './auth/signin/signin.component';
 import { JobDeployComponent } from './job-deploy/job-deploy.component';
+import { AuthDAO } from './auth/auth.dao';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { JobDeployComponent } from './job-deploy/job-deploy.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGaurd],
+  providers: [AuthService, AuthGaurd, AuthDAO],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

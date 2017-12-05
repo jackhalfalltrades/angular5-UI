@@ -1,30 +1,39 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { LoginForm } from './signin.model';
+import { AuthDAO } from './auth.dao';
 
+@Injectable()
 export class AuthService {
+    constructor(private authdao: AuthDAO) {}
     loggedIn = false;
     loginForm = new LoginForm();
     userName = '';
-    loginStatusUpdated = new EventEmitter<{ userName: string, isLoggedIn: boolean }>();
+    data: string;
+    loginStatusUpdated = new EventEmitter<{ displayName: string, isLoggedIn: boolean }>();
 
     login(userName: string, password: string): LoginForm {
-        // after reaching out to server and on response set the below values
-        this.loginForm.setUserName(userName);
-        this.loginForm.setLoggedIn(true);
-        this.loginForm.setisAunthencated(true);
-        this.loggedIn = true;
+        // reaching out to server and on response set the below values
+        this.data = '{ "userId": "' + userName + '", "password": "' + password + '" }';
+        this.authdao.login(this.data)
+        .subscribe(
+            (response: any) => {
+                this.loginForm.setUserId(response.userId);
+                this.loginForm.setFirstName(response.firstName);
+                this.loginForm.setLastName(response.lastName);
+                this.loginForm.setLoggedIn(true);
+                this.loginForm.setDisplayName(response.displayName);
+                this.loginForm.setEmployeeRole(response.employeeRole);
+                this.loginForm.setEmployeeStatus(response.employeeStatus);
+                this.loginForm.setisAunthencated(true);
+            },
+            (error) => console.log(error)
+        );
         return this.loginForm;
     }
 
     isAuthenticated(): boolean {
-        // const promise = new Promise(
-        //     (resolve, reject) => {
-        //         setTimeout(() => {
-        //           resolve(this.loggedIn);
-        //         }, 800);
-        //     }
-        // );
-        return this.loggedIn;
+
+        return this.loginForm.getisAunthencated();
     }
 
     logout(): boolean {
@@ -33,7 +42,7 @@ export class AuthService {
         this.loggedIn = false;
         return true;
     }
-    emitLoginStatusUpdated(userName: string, isLoggedIn: boolean) {
-        this.loginStatusUpdated.emit({ userName: userName, isLoggedIn: isLoggedIn });
+    emitLoginStatusUpdated(displayName: string, isLoggedIn: boolean) {
+        this.loginStatusUpdated.emit({ displayName: displayName, isLoggedIn: isLoggedIn });
     }
 }

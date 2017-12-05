@@ -9,10 +9,10 @@
                 <label for="aId">A-Id</label>
                 <input type="text" readonly class="form-control" name="userName" formControlName="userName"/>
               </td>
-              <td style="text-align:center; padding-bottom: 15px; padding-right: 20px">
+              <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
                 <label for="requestType">Request Type</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.requestTypeOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
-                (ngModelChange)="onChange($event)" name="select" formControlName="requestTypeOptionsModel"></ss-multiselect-dropdown>
+                name="requestTypeOptionsModel" formControlName="requestTypeOptionsModel"></ss-multiselect-dropdown>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
                 <label for="ticketNumber">Ticket Number</label>
@@ -41,64 +41,65 @@
               <td style="text-align:center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="applications">Applications</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.applicationOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="selectApplication" formControlName="applicationOptionsModel"> </ss-multiselect-dropdown>
+                 name="applicationOptionsModel" formControlName="applicationOptionsModel"> 
+                </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="environment">Environment</label>
-                <ss-multiselect-dropdown [options]="jobCreateModel.environemntOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="environmentOptionsModel"> </ss-multiselect-dropdown>
+                <ss-multiselect-dropdown [options]="jobCreateModel.environmentOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
+                  name="environmentOptionsModel" formControlName="environmentOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="type">Type</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.typeOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="typeOptionsModel"> </ss-multiselect-dropdown>
+                  name="typeOptionsModel" formControlName="typeOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="technology">Technology</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.technologyOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="technologyOptionsModel"> </ss-multiselect-dropdown>
+                  name="technologyOptionsModel" formControlName="technologyOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="mode">Mode</label>
-                <ss-multiselect-dropdown [options]="jobCreateModel.modeOptions" [texts]="jobCreateModel.multiSelectEnabler" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="modeOptionsModel"> </ss-multiselect-dropdown>
+                <ss-multiselect-dropdown [options]="jobCreateModel.modeOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
+                  name="modeOptionsModel" formControlName="modeOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="groupingOne">Domain/Cluster</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.domainOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="domainOptionsModel"> </ss-multiselect-dropdown>
+                  name="domainOptionsModel" formControlName="domainOptionsModel"> </ss-multiselect-dropdown>
               </td>
             </tr>
             <tr>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="groupingTwo">Profile/Cluster</label>
-                <ss-multiselect-dropdown [options]="jobCreateModel.clusterOptions" [texts]="jobCreateModel.multiSelectEnabler" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="clusterOptionsModel"> </ss-multiselect-dropdown>
+                <ss-multiselect-dropdown [options]="jobCreateModel.clusterOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
+                  name="clusterOptionsModel" formControlName="clusterOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="vm">VM</label>
-                <ss-multiselect-dropdown [options]="jobCreateModel.vmOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  name="select" formControlName="vmOptionsModel"> </ss-multiselect-dropdown>
+                <ss-multiselect-dropdown [options]="jobCreateModel.vmOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler" 
+                 name="vmOptionsModel" formControlName="vmOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="jvm">JVM</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.jvmOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  name="select" formControlName="jvmOptionsModel"> </ss-multiselect-dropdown>
+                 name="jvmOptionsModel" formControlName="jvmOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="task">Task</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.taskOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="taskOptionsModel"> </ss-multiselect-dropdown>
+                  name="taskOptionsModel" formControlName="taskOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="artifact">Artifact</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.artifactOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="artifactOptionsModel"> </ss-multiselect-dropdown>
+                  name="artifactOptionsModel" formControlName="artifactOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="artifactPath">Artifact Path</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.artifactPathOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  (ngModelChange)="onChange($event)" name="select" formControlName="artifactPathOptionsModel"> </ss-multiselect-dropdown>
+                  name="artifactPathOptionsModel" formControlName="artifactPathOptionsModel"> </ss-multiselect-dropdown>
               </td>
             </tr>
           </table>

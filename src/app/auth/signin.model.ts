@@ -2,15 +2,14 @@ import { EventEmitter } from '@angular/core';
 
 export class LoginForm {
     loggedIn =  false;
-    userName = 'Signin';
+    firstName = '';
+    lastName = '';
+    userId = '';
+    displayName = 'Signin';
+    employeeStatus = '';
+    employeeRole = '';
     isAunthencated =  false;
     constructor() {}
-
-    // constructor(loggedIn: boolean, userName: string, isAuthenticated: boolean) {
-    //     this.loggedIn = loggedIn;
-    //     this.userName = userName;
-    //     this.isAunthencated = isAuthenticated;
-    // }
 
     setLoggedIn(loggedIn: boolean) {
         this.loggedIn = loggedIn;
@@ -20,12 +19,53 @@ export class LoginForm {
         return this.loggedIn;
     }
 
-    setUserName(UserName: string) {
-        this.userName = UserName;
+    setFirstName(firstName: string) {
+        this.firstName = firstName;
     }
 
-    getUserName(): string {
-        return this.userName;
+    getFirstName(): string {
+        return this.firstName;
+    }
+
+
+    setLastName(lastName: string) {
+        this.lastName = lastName;
+    }
+
+    getLastName(): string {
+        return this.lastName;
+    }
+
+    setUserId(userId: string) {
+        this.userId = userId;
+    }
+
+    getUserId(): string {
+        return this.userId;
+    }
+
+    setDisplayName(displayName: string) {
+        this.displayName = displayName;
+    }
+
+    getDisplayName(): string {
+        return this.displayName;
+    }
+
+    setEmployeeStatus(employeeStatus: string) {
+        this.employeeStatus = employeeStatus;
+    }
+
+    getEmployeeStatus(): string {
+        return this.employeeStatus;
+    }
+
+    setEmployeeRole(employeeRole: string) {
+        this.employeeRole = employeeRole;
+    }
+
+    getEmployeeRole(): string {
+        return this.employeeRole;
     }
 
     setisAunthencated(isAunthencated: boolean) {

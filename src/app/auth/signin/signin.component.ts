@@ -23,7 +23,7 @@ export class SigninComponent implements OnInit {
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required)
     });
-    this.authService.loginStatusUpdated.emit({ userName: 'Singin' , isLoggedIn: false });
+    this.authService.loginStatusUpdated.emit({ displayName: 'Singin' , isLoggedIn: false });
   }
 
   onChange() {
@@ -40,8 +40,7 @@ export class SigninComponent implements OnInit {
       this.formValidated = false;
     } else {
       this.loginForm = this.authService.login(this.loginRenderer.get('username').value, this.loginRenderer.get('password').value);
-      console.log(this.loginForm);
-      this.authService.loginStatusUpdated.emit({ userName: this.loginForm.getUserName(), isLoggedIn: this.loginForm.getLoggedIn() });
+      this.authService.loginStatusUpdated.emit({ displayName: this.loginForm.getDisplayName(), isLoggedIn: this.loginForm.getLoggedIn() });
       this.loginForm.getisAunthencated() ? this.router.navigate(['/jobCreate']) : this.formValidated = false;
     }
   }
