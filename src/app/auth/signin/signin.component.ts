@@ -1,8 +1,8 @@
+import { LoginForm } from './../signin.model';
 import { Component, OnInit, OnChanges, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
-import { LoginForm } from '../signin.model';
+// import { LoginForm } from '../signin.model';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -13,9 +13,10 @@ import { AuthService } from '../auth.service';
 export class SigninComponent implements OnInit {
   loginRenderer: FormGroup;
   formValidated = true;
-  loginForm: LoginForm;
+  loginFailed = false;
+  loginError: string;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -39,10 +40,16 @@ export class SigninComponent implements OnInit {
     if (this.loginRenderer.invalid) {
       this.formValidated = false;
     } else {
-      this.loginForm = this.authService.login(this.loginRenderer.get('username').value, this.loginRenderer.get('password').value);
-      this.authService.loginStatusUpdated.emit({ displayName: this.loginForm.getDisplayName(), isLoggedIn: this.loginForm.getLoggedIn() });
-      this.loginForm.getisAunthencated() ? this.router.navigate(['/jobCreate']) : this.formValidated = false;
+      this.authService.login(
+        this.loginRenderer.get('username').value, this.loginRenderer.get('password').value
+      );
+      this.authService.loginFailed
+      .subscribe(
+        (loginErrorDetails: {loginFailed: boolean, loginError: string}) => {
+          this.loginFailed = loginErrorDetails.loginFailed;
+          this.loginError = loginErrorDetails.loginError;
+        }
+      );
     }
   }
-
 }

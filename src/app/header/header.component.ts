@@ -18,9 +18,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.loginStatusUpdated
     .subscribe(
-      (loginDetails: { userName: string, isLoggedIn: boolean}) => {
+      (loginDetails: { displayName: string, isLoggedIn: boolean}) => {
         this.isLoggedIn = loginDetails.isLoggedIn;
-        this.welcomeText = this.constText + loginDetails.userName;
+        this.welcomeText = this.constText + loginDetails.displayName;
       }
     );
   }

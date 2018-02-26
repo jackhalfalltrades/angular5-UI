@@ -6,6 +6,7 @@ export class JobCreateModel {
   cerNo= '';
   spid= '';
   impactedCi= '';
+  isValidTicketNumber: boolean;
 
   // Dropdown Options displayed on screen
   requestTypeOptions: IMultiSelectOption[];
@@ -21,6 +22,21 @@ export class JobCreateModel {
   taskOptions: IMultiSelectOption[];
   artifactOptions: IMultiSelectOption[];
   artifactPathOptions: IMultiSelectOption[];
+
+
+  selectedRequestTypeOptions: any[];
+  selectedApplicationOptions: any[];
+  selectedEnvironmentOptions: any[] = ['default'];
+  selectedTypeOptions: any[]= ['default'];
+  selectedTechnologyOptions: any[]= ['default'];
+  selectedModeOptions: any[]= ['default'];
+  selectedDomainOptions: any[]= ['default'];
+  selectedClusterOptions: any[]= ['default'];
+  selectedVmOptions: any[]= ['default'];
+  selectedJvmOptions: any[]= ['default'];
+  selectedTaskOptions: any[]= ['default'];
+  selectedArtifactOptions: any[]= ['default'];
+  selectedArtifactPathOptions: String[] = ['default'];
 
   // Dropdown Options selected from displayed (only the ID will be available)
   requestTypeOptionsModel: IMultiSelectOption[];
@@ -340,6 +356,117 @@ export class JobCreateModel {
 
   getClusterOptionsModel(): IMultiSelectOption[] {
     return this.clusterOptionsModel;
+  }
+
+  setSelectedRequestTypeOptions( selectedRequestTypeOptions: any[] ) {
+    this.selectedRequestTypeOptions = selectedRequestTypeOptions;
+  }
+
+  getSelectedRequestTypeOptions(): any[] {
+    return this.selectedRequestTypeOptions;
+  }
+
+  getSelectedApplicationOptions(): any[] {
+    return this.selectedApplicationOptions;
+  }
+
+  setSelectedApplicationOptions( selectedApplicationOptions: any[] ) {
+    this.selectedApplicationOptions = selectedApplicationOptions;
+  }
+
+  getSelectedEnvironmentOptions(): any[] {
+    return this.selectedEnvironmentOptions;
+  }
+
+  setSelectedEnvironmentOptions( selectedEnvironmentOptions: any[]) {
+    this.selectedEnvironmentOptions = selectedEnvironmentOptions;
+  }
+  getSelectedTypeOptions(): any[] {
+    return this.selectedTypeOptions;
+  }
+
+  setSelectedTypeOptions( selectedTypeOptions: any[] ) {
+    this.selectedTypeOptions = selectedTypeOptions;
+  }
+
+  getSelectedTechnologyOptions(): any {
+    return this.selectedTechnologyOptions;
+  }
+
+  setSelectedTechnologyOptions( selectedTechnologyOptions: any[] ) {
+    this.selectedTechnologyOptions = selectedTechnologyOptions;
+  }
+
+  getSelectedModeOptions(): any[] {
+    return this.selectedModeOptions;
+  }
+
+  setSelectedModeOptions(  selectedModeOptions: any[] ) {
+    this.selectedModeOptions = selectedModeOptions;
+  }
+
+  getSelectedDomainOptions(): any[] {
+    return this.selectedDomainOptions;
+  }
+
+  setSelectedDomainOptions( selectedDomainOptions: any[] ) {
+    this.selectedDomainOptions = selectedDomainOptions;
+  }
+
+  getSelectedClusterOptions(): any[] {
+    return this.selectedClusterOptions;
+  }
+
+  setSelectedClusterOptions( selectedClusterOptions: any[] ) {
+    this.selectedClusterOptions = selectedClusterOptions;
+  }
+
+  getSelectedVmOptions(): any[] {
+    return this.selectedVmOptions;
+  }
+
+  setSelectedVmOptions( selectedVmOptions: any[] ) {
+    this.selectedVmOptions = selectedVmOptions;
+  }
+
+  getSelectedJvmOptions(): any[] {
+    return this.selectedJvmOptions;
+  }
+
+  setSelectedJvmOptions( selectedJvmOptions: any[] ) {
+    this.selectedJvmOptions = selectedJvmOptions;
+  }
+
+  getSelectedTaskOptions(): any[] {
+    return this.selectedTaskOptions;
+  }
+
+  setSelectedTaskOptions( selectedTaskOptions: any[] ) {
+    this.selectedTaskOptions = selectedTaskOptions;
+  }
+
+  getSelectedArtifactOptions(): String[] {
+    return this.selectedArtifactOptions;
+  }
+
+  setSelectedArtifactOptions( selectedArtifactOptions: String[] ) {
+    this.selectedArtifactOptions = selectedArtifactOptions;
+  }
+
+  getSelectedArtifactPathOptions(): any[] {
+    return this.selectedArtifactPathOptions;
+  }
+
+  setSelectedArtifactPathOptions( selectedArtifactPathOptions: any[] ) {
+    this.selectedArtifactPathOptions = selectedArtifactPathOptions;
+  }
+
+  getIsValidTicketNumber(): boolean {
+    return this.isValidTicketNumber;
+  }
+
+  setIsValidTicketNumber(isValidTicketNumber: boolean) {
+    this.isValidTicketNumber = isValidTicketNumber;
   }
 
 }

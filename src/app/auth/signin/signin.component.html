@@ -40,6 +40,7 @@
                         </div>
                       </div>
                       <span class="help-block" *ngIf="!formValidated">Please enter valid username and password</span>
+                      <span class="help-block" *ngIf="loginError">{{ loginError }} Please enter valid credentials</span>
                     </div>
                   </form>
                 </div>

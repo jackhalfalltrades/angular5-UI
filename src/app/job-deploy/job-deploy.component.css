@@ -3,13 +3,18 @@ width: 100%;
 left: 0;
 }
 
-table { width: 100% }
+.container { float: left;}
+.table { float: left;
+    overflow: auto;
+}
+
+
 
 th { text-align: center; }
-tr, th {
+/* tr, th {
     padding-left: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 30px;
     vertical-align: middle;
-}
+} */

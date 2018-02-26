@@ -9,6 +9,8 @@ export class LoginForm {
     employeeStatus = '';
     employeeRole = '';
     isAunthencated =  false;
+    errorMessage = '';
+    loginError = false;
     constructor() {}
 
     setLoggedIn(loggedIn: boolean) {
@@ -74,5 +76,21 @@ export class LoginForm {
 
     getisAunthencated(): boolean {
         return this.isAunthencated;
+    }
+
+    setLoginError(loginError: boolean) {
+        this.loginError = loginError;
+    }
+
+    getLoginError(): boolean {
+        return this.loginError;
+    }
+
+    setErrorMessage(errorMessage: string) {
+        this.errorMessage = errorMessage;
+    }
+
+    getErrorMessage(): string {
+        return this.errorMessage;
     }
 }

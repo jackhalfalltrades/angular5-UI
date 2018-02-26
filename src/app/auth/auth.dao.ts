@@ -21,7 +21,7 @@ export class AuthDAO {
         const requestOptions = {
             headers: new Headers(headerDict),
         };
-        return this.http.post('http://localhost:8080/login', data, requestOptions)
+        return this.http.post('http://localhost:10180/login', data, requestOptions)
         .map(
             (res: Response) => {
                 const response = res.json();

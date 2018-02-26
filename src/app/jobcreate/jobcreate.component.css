@@ -1,5 +1,9 @@
-.container-fluid {
+.container {
     padding-top:100px;
+}
+
+#canvas {
+    padding-right:200px;
 }
 .panel .panel-secondary .panel-group .panel-body table .form-inline .container-fluid {
     border: none;

@@ -1,4 +1,8 @@
-<div class="container-fluid">
+<header>
+  <span *ngIf="!formValidation.isValid" style="color:red;"> ** Please enter a {{ formValidation.s }}</span>
+</header>
+
+<div class="container" id="canvas">
   <form class="form-inline" [formGroup]="jobRenderer" (ngSubmit)="onSubmit()">
     <div class="panel-group">
       <div class="panel panel-secondary">
@@ -10,12 +14,12 @@
                 <input type="text" readonly class="form-control" name="userName" formControlName="userName"/>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
-                <label for="requestType">Request Type</label>
+                <label for="requestType">Request Type<span *ngIf="!formValidation.isValid && formValidation.isrequestType && jobRenderer.get('requestTypeOptionsModel').touched" style="color:red;"> **</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.requestTypeOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
                 name="requestTypeOptionsModel" formControlName="requestTypeOptionsModel"></ss-multiselect-dropdown>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
-                <label for="ticketNumber">Ticket Number</label>
+                <label for="ticketNumber">Ticket Number<span *ngIf="!formValidation.isValid && formValidation.isTicketNumber && jobRenderer.get('ticketNumber').touched" style="color:red;"> **</span></label>
                 <input type="text" class="form-control" name="ticketNumber" formControlName="ticketNumber"/>
               </td>
               <td style="text-align:center; padding-bottom: 10px; padding-right: 20px">
@@ -39,22 +43,22 @@
           <table>
             <tr>
               <td style="text-align:center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="applications">Applications</label>
+                <label for="applications">Applications<span *ngIf="!jobRenderer.get('applicationOptionsModel').valid && jobRenderer.get('applicationOptionsModel').touched" style="color:red;"> *</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.applicationOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
                  name="applicationOptionsModel" formControlName="applicationOptionsModel"> 
                 </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="environment">Environment</label>
-                <ss-multiselect-dropdown [options]="jobCreateModel.environmentOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
+                <label for="environment">Environment<span *ngIf="!jobRenderer.get('environmentOptionsModel').valid && jobRenderer.get('environmentOptionsModel').touched" style="color:red;"> *</span></label>
+                <ss-multiselect-dropdown [options]="jobCreateModel.environmentOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
                   name="environmentOptionsModel" formControlName="environmentOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="type">Type</label>
-                <ss-multiselect-dropdown [options]="jobCreateModel.typeOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
+                <label for="type">Component<span *ngIf="!jobRenderer.get('typeOptionsModel').valid && jobRenderer.get('typeOptionsModel').touched" style="color:red;"> *</span></label>
+                <ss-multiselect-dropdown [options]="jobCreateModel.typeOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
                   name="typeOptionsModel" formControlName="typeOptionsModel"> </ss-multiselect-dropdown>
               </td>
-              <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
+              <!-- <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
                 <label for="technology">Technology</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.technologyOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
                   name="technologyOptionsModel" formControlName="technologyOptionsModel"> </ss-multiselect-dropdown>
@@ -63,41 +67,41 @@
                 <label for="mode">Mode</label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.modeOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
                   name="modeOptionsModel" formControlName="modeOptionsModel"> </ss-multiselect-dropdown>
-              </td>
+              </td> -->
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="groupingOne">Domain/Cluster</label>
+                <label for="groupingOne">Domain/Cluster<span *ngIf="!jobRenderer.get('domainOptionsModel').valid && jobRenderer.get('domainOptionsModel').touched" style="color:red;"> *</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.domainOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
                   name="domainOptionsModel" formControlName="domainOptionsModel"> </ss-multiselect-dropdown>
+              </td>
+              <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
+                <label for="groupingTwo">Profile/Cluster<span *ngIf="!jobRenderer.get('clusterOptionsModel').valid && jobRenderer.get('clusterOptionsModel').touched" style="color:red;"> *</span></label>
+                <ss-multiselect-dropdown [options]="jobCreateModel.clusterOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
+                  name="clusterOptionsModel" formControlName="clusterOptionsModel"> </ss-multiselect-dropdown>
               </td>
             </tr>
             <tr>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="groupingTwo">Profile/Cluster</label>
-                <ss-multiselect-dropdown [options]="jobCreateModel.clusterOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
-                  name="clusterOptionsModel" formControlName="clusterOptionsModel"> </ss-multiselect-dropdown>
-              </td>
-              <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="vm">VM</label>
+                <label for="vm">Host Names<span *ngIf="!jobRenderer.get('vmOptionsModel').valid && jobRenderer.get('vmOptionsModel').touched" style="color:red;"> *</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.vmOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler" 
                  name="vmOptionsModel" formControlName="vmOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="jvm">JVM</label>
+                <label for="jvm">Instances<span *ngIf="!jobRenderer.get('jvmOptionsModel').valid && jobRenderer.get('jvmOptionsModel').touched" style="color:red;"> *</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.jvmOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
                  name="jvmOptionsModel" formControlName="jvmOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="task">Task</label>
+                <label for="task">Task<span *ngIf="!jobRenderer.get('taskOptionsModel').valid && jobRenderer.get('taskOptionsModel').touched" style="color:red;"> *</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.taskOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.singleSelectEnabler"
                   name="taskOptionsModel" formControlName="taskOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="artifact">Artifact</label>
+                <label for="artifact">Artifact<span *ngIf="!jobRenderer.get('artifactOptionsModel').valid && jobRenderer.get('artifactOptionsModel').touched" style="color:red;"> *</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.artifactOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
                   name="artifactOptionsModel" formControlName="artifactOptionsModel"> </ss-multiselect-dropdown>
               </td>
               <td style="text-align: center; padding-left: 50px; padding-right: 50px; padding-bottom: 20px">
-                <label for="artifactPath">Artifact Path</label>
+                <label for="artifactPath">Artifact Path<span *ngIf="!jobRenderer.get('artifactPathOptionsModel').valid && jobRenderer.get('artifactPathOptionsModel').touched" style="color:red;"> *</span></label>
                 <ss-multiselect-dropdown [options]="jobCreateModel.artifactPathOptions" [texts]="jobCreateModel.selectTextRenderer" [settings]="jobCreateModel.multiSelectEnabler"
                   name="artifactPathOptionsModel" formControlName="artifactPathOptionsModel"> </ss-multiselect-dropdown>
               </td>
@@ -106,7 +110,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-11 text-center">
-                <button type="submit" class="btn btn-success btn-lg"> Submit </button>
+                <button type="submit" class="btn btn-success btn-lg" [disabled]="!isFormEnabled"> Submit </button>
                 <button type="reset" class="btn btn-danger btn-lg" (onclick)="onReset()"> Reset </button>
               </div>
             </div>
