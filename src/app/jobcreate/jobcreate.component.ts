@@ -22,7 +22,7 @@ export class JobcreateComponent implements OnInit {
   multiSelectOptionModel: IMultiSelectOption[];
   formValidation = {s: '', isValid: true, isrequestType: false, isTicketNumber: false};
   isFormEnabled = false;
-  // : { s: string, isValid: boolean, isrequestType: boolean, isTicketNumber: boolean }
+  jobCreateResponse: any;
 
   constructor(private router: Router, private jobCreateService: JobCreateService, private validator: Validator) { }
 
@@ -239,7 +239,7 @@ export class JobcreateComponent implements OnInit {
         }
       });
     this.jobRenderer.controls['artifactOptionsModel'].valueChanges
-      .subscribe((selectedOptions: String[]) => {
+      .subscribe((selectedOptions) => {
         if (selectedOptions[0]) {
           this.jobCreateModel.setSelectedArtifactOptions(selectedOptions);
           // populate artifact path dropdown based on app, env, type, tech, mode, domain, cluster, vm, jvm, task, artifiact
@@ -259,15 +259,20 @@ export class JobcreateComponent implements OnInit {
       this.jobRenderer.statusChanges
       .subscribe(
         (observer: any) => {
-          // console.log(observer);
           observer.toString() === 'VALID' ? this.isFormEnabled = true : this.isFormEnabled = false;
-          // console.log('form status:' + this.jobRenderer.status + ', isFormEnabled: ' + this.isFormEnabled );
         }
       );
   }
 
   onSubmit() {
-    this.jobCreateService.generateJob(this.jobRenderer, this.jobCreateModel);
+    console.log(this.jobRenderer);
+    this.jobCreateService.createJob(this.jobRenderer, this.jobCreateModel);
+    if (this.jobCreateModel.getJobID == null) {
+      alert();
+    } else {
+      alert('Job created successfully with jobID: ' + this.jobCreateModel.getJobID());
+      this.router.navigate(['/jobDeploy']);
+    }
   }
 
   onReset() {

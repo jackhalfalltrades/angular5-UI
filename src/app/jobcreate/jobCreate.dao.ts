@@ -48,7 +48,7 @@ export class JobCreateDao {
 
     getDropdowns(data: String) {
         // get the dropdown from server
-        return this.http.post('http://localhost:8080/dropdowns', data, this.requestOptions)
+        return this.http.post('https://localhost:20143/load/operations/dropdown', data, this.requestOptions)
             .map(
             (res: Response) => {
                 const response = res.json();
@@ -57,9 +57,7 @@ export class JobCreateDao {
             );
     }
     createJob(data: String) {
-        // get the dropdown from server
-        console.log(data);
-        return this.http.post('http://localhost:8070/createJob', data, this.requestOptions)
+        return this.http.post('https://localhost:30143/jobCreate', data, this.requestOptions)
             .map(
             (res: Response) => {
                 console.log('res: ' + res);

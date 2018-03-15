@@ -7,6 +7,7 @@ export class JobCreateModel {
   spid= '';
   impactedCi= '';
   isValidTicketNumber: boolean;
+  jobID= '';
 
   // Dropdown Options displayed on screen
   requestTypeOptions: IMultiSelectOption[];
@@ -36,7 +37,7 @@ export class JobCreateModel {
   selectedJvmOptions: any[]= ['default'];
   selectedTaskOptions: any[]= ['default'];
   selectedArtifactOptions: any[]= ['default'];
-  selectedArtifactPathOptions: String[] = ['default'];
+  selectedArtifactPathOptions: any[] = ['default'];
 
   // Dropdown Options selected from displayed (only the ID will be available)
   requestTypeOptionsModel: IMultiSelectOption[];
@@ -136,6 +137,14 @@ export class JobCreateModel {
 
   getImpactedCi(): string {
     return this.impactedCi;
+  }
+
+  setJobID(jobID: string) {
+    this.jobID = jobID;
+  }
+
+  getJobID(): string {
+    return this.jobID;
   }
 
   getMultiSelectEnabler(): IMultiSelectSettings {

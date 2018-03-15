@@ -65,7 +65,6 @@ export class JobCreateService {
                     this.jobCreateModel.setTypeOptions(this.temp);
                 }
             );
-            // this.jobCreateModel.setTypeOptions([{ id: 1, name: 'Web Server' }, { id: 2, name: 'App Server' }]);
         }
        /*  if (selectorName === 'typeOptionsModel') {
             // Populate technology dropdowns based on selected application and environments and type
@@ -110,7 +109,6 @@ export class JobCreateService {
                     this.jobCreateModel.setDomainOptions(this.temp);
                 }
             );
-           // this.jobCreateModel.setDomainOptions([{ id: 1, name: 'Not Applicable' }, { id: 2, name: 'Not Applicable' }]);
         }
         if (selectorName === 'domainOptionsModel') {
             // Populate cluster dropdowns based on selected application and environments and type and technology
@@ -125,7 +123,6 @@ export class JobCreateService {
                     this.jobCreateModel.setClusterOptions(this.temp);
                 }
             );
-           // this.jobCreateModel.setClusterOptions([{ id: 1, name: 'Not Applicable' }, { id: 2, name: 'Not Applicable' }]);
         }
         if (selectorName === 'clusterOptionsModel') {
             // Populate VM dropdowns based on selected application and environments and type and technology
@@ -140,11 +137,6 @@ export class JobCreateService {
                     this.jobCreateModel.setVmOptions(this.temp);
                 }
             );
-            // this.jobCreateModel.setVmOptions(
-            //     [
-            //         { id: 1, name: 'dtl01rssap02c.na.bestbuy.com' },
-            //         { id: 2, name: 'dtl01rm1ap02c.na.bestbuy.com' }
-            //     ]);
         }
         if (selectorName === 'vmOptionsModel') {
             // Populate JVM dropdowns based on selected application and environments and type and technology
@@ -159,11 +151,6 @@ export class JobCreateService {
                     this.jobCreateModel.setJvmOptions(this.temp);
                 }
             );
-            // this.jobCreateModel.setJvmOptions(
-            //     [
-            //         { id: 1, name: 'jbstd-rss-D05' },
-            //         { id: 2, name: 'jbstd-reim-s02' }
-            //     ]);
         }
         if (selectorName === 'jvmOptionsModel') {
             // Populate task dropdowns based on selected application and environments and type and technology
@@ -178,12 +165,6 @@ export class JobCreateService {
                     this.jobCreateModel.setTaskOptions(this.temp);
                 }
             );
-            // this.jobCreateModel.setTaskOptions(
-            //     [
-            //         { id: 1, name: 'Stop JVM' },
-            //         { id: 2, name: 'Start JVM' },
-            //         { id: 3, name: 'Deploy Application' }
-            //     ]);
         }
         if (selectorName === 'taskOptionsModel') {
             // Populate artifact Options dropdowns based on selected application and environments and type and technology
@@ -198,11 +179,6 @@ export class JobCreateService {
                     this.jobCreateModel.setArtifactOptions(this.temp);
                 }
             );
-            // this.jobCreateModel.setArtifactOptions(
-            //     [
-            //         { id: 1, name: 'rss.war' },
-            //         { id: 2, name: 'rssWeb.war' }
-            //     ]);
         }
         if (selectorName === 'artifactOptionsModel') {
             // populate artifact path options
@@ -215,17 +191,13 @@ export class JobCreateService {
                         this.temp.push({id: res['artifactDestinationPath'], name: res['artifactSourcePath']});
                     }
                     this.jobCreateModel.setArtifactPathOptions(this.temp);
+                    console.log(this.jobCreateModel.getArtifactPathOptions());
                 }
             );
-            // this.jobCreateModel.setArtifactPathOptions(
-            //     [
-            //         { id: 1, name: '/tmp/deploymentfiles/rss/app/' },
-            //         { id: 2, name: '/tmp/deploymentfiles/rss/web/' }
-            //     ]);
         }
     }
 
-    generateJob(jobRenderer: any, jobCreateModel: any) {
+    createJob(jobRenderer: any, jobCreateModel: any) {
         const jobCreateForm = jobRenderer.value;
         for (const requestOption of jobCreateModel.getRequestTypeOptions()) {
             if ( requestOption['id'].toString() === jobCreateForm['requestTypeOptionsModel'][0].toString() ) {
@@ -236,11 +208,11 @@ export class JobCreateService {
         this.jobCreateDao.createJob(JSON.stringify(jobCreateForm))
         .subscribe(
             (response) => {
-                console.log(response);
+                this.jobCreateModel.setJobID(response['jobID']);
             },
-            // tslint:disable-next-line:no-shadowed-variable
-            (error: any) => {
-                console.log(error);
+            (errors: any) => {
+                console.log(errors);
+                return 'Error in creating job, please contact administrator';
             }
 
         );

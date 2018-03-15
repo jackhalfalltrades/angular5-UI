@@ -20,7 +20,6 @@ export class AuthService {
         this.authdao.login(this.data)
         .subscribe(
             (response: any) => {
-                console.log('in service');
                 this.loginForm.setUserId(response.userId);
                 this.loginForm.setFirstName(response.firstName);
                 this.loginForm.setLastName(response.lastName);
