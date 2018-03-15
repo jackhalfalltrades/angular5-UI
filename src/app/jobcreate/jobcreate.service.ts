@@ -6,13 +6,14 @@ import { AuthService } from '../auth/auth.service';
 import { JobCreateDao } from './jobCreate.dao';
 import { error } from 'selenium-webdriver';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class JobCreateService {
 
     jobCreateModel: JobCreateModel;
     temp: IMultiSelectOption[] = [];
-    constructor(private authService: AuthService, private jobCreateDao: JobCreateDao) { }
+    constructor(private router: Router, private authService: AuthService, private jobCreateDao: JobCreateDao) { }
 
     jobCreateRenderer(): JobCreateModel {
 
@@ -191,7 +192,6 @@ export class JobCreateService {
                         this.temp.push({id: res['artifactDestinationPath'], name: res['artifactSourcePath']});
                     }
                     this.jobCreateModel.setArtifactPathOptions(this.temp);
-                    console.log(this.jobCreateModel.getArtifactPathOptions());
                 }
             );
         }
@@ -204,17 +204,17 @@ export class JobCreateService {
                 jobCreateForm['requestTypeOptionsModel'] = new Array (requestOption['name']);
             }
         }
-        console.log(JSON.stringify(jobCreateForm));
         this.jobCreateDao.createJob(JSON.stringify(jobCreateForm))
         .subscribe(
             (response) => {
                 this.jobCreateModel.setJobID(response['jobID']);
+                alert('Job created successfully with jobID: ' + response['jobID']);
+                this.router.navigate(['/jobDeploy']);
             },
             (errors: any) => {
                 console.log(errors);
                 return 'Error in creating job, please contact administrator';
             }
-
         );
     }
 }

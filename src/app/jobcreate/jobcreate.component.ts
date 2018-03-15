@@ -3,7 +3,6 @@ import { JobCreateModel } from './jobCreate.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings, MultiselectDropdown } from 'angular-2-dropdown-multiselect';
-import { Router } from '@angular/router';
 
 import { AuthService } from './../auth/auth.service';
 import { JobCreateService } from './jobcreate.service';
@@ -24,7 +23,7 @@ export class JobcreateComponent implements OnInit {
   isFormEnabled = false;
   jobCreateResponse: any;
 
-  constructor(private router: Router, private jobCreateService: JobCreateService, private validator: Validator) { }
+  constructor(private jobCreateService: JobCreateService, private validator: Validator) { }
 
   ngOnInit() {
 
@@ -267,12 +266,6 @@ export class JobcreateComponent implements OnInit {
   onSubmit() {
     console.log(this.jobRenderer);
     this.jobCreateService.createJob(this.jobRenderer, this.jobCreateModel);
-    if (this.jobCreateModel.getJobID == null) {
-      alert();
-    } else {
-      alert('Job created successfully with jobID: ' + this.jobCreateModel.getJobID());
-      this.router.navigate(['/jobDeploy']);
-    }
   }
 
   onReset() {
