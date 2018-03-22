@@ -1,9 +1,7 @@
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-// tslint:disable-next-line:import-blacklist
-import 'rxjs/Rx';
-
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class JobDeployDao {
