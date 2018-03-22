@@ -13,6 +13,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthGaurd } from './auth/auth-gaurd.service';
 import { AppRoutingModule } from './app-routing.module';
 import { SigninComponent } from './auth/signin/signin.component';
+import { SignoutComponent } from './auth/signout/signout.component';
 import { JobDeployComponent } from './job-deploy/job-deploy.component';
 import { AuthDAO } from './auth/auth.dao';
 
@@ -20,6 +21,7 @@ import { AuthDAO } from './auth/auth.dao';
   declarations: [
     AppComponent,
     SigninComponent,
+    SignoutComponent,
     HeaderComponent,
     DropdownDirective,
     JobcreateComponent,
