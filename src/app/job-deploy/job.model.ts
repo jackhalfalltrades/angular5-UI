@@ -2,109 +2,120 @@ export class Job {
 
     constructor() {}
 
-    jobId: string;
-    jobType: String;
-    jobParam: String;
-    startTime: String;
-    requestType: String;
-    requestNumber: String;
-    application: String;
-    submittedBy: String;
-    submittedDate: String;
-    jobStatus: String;
+    jobId: any;
+    jobType: any;
+    jobParam: any;
+    createdAt: any;
+    requestType: any;
+    requestNumber: any;
+    application: any;
+    createdBy: any;
+    jobStatus: any;
+    submittedBy: any;
+    submittedAt: any;
 
-    jobDetails: {jobId: String, jobType: String, jobParam: String, startTime: String, requestType: String,
-        requestNumber: String, application: String, submittedBy: String, submittedDate: String, jobStatus: String};
+    jobDetails: {jobId: any, jobType: any, jobParam: any, createdAt: any, requestType: any,
+        requestNumber: any, application: any, createdBy: any, jobStatus: any,
+        submittedBy: any, submittedAt: any};
 
-    setJobId(jobId: string) {
+    setJobId(jobId: any) {
         this.jobId = jobId;
     }
 
-    getJobId(): String {
+    getJobId(): any {
         return this.jobId;
     }
 
-    setJobType(jobType: String) {
+    setJobType(jobType: any) {
         this.jobType = jobType;
     }
 
-    getJobType(): String {
+    getJobType(): any {
         return this.jobType;
     }
 
-    setJobParam(jobParam: String) {
+    setJobParam(jobParam: any) {
         this.jobParam = jobParam;
     }
 
-    getJobParam(): String {
+    getJobParam(): any {
         return this.jobParam;
     }
 
-    setStartTime(startTime: String) {
-        this.startTime = startTime;
+    setCreatedAt(createdAt: any) {
+        this.createdAt = createdAt;
     }
 
-    getStartTime(): String {
-        return this.startTime;
+    getCreatedAt(): any {
+        return this.createdAt;
     }
 
-    setRequestType(requestType: String) {
+    setRequestType(requestType: any) {
         this.requestType = requestType;
     }
 
-    getRequestType(): String {
+    getRequestType(): any {
         return this.requestType;
     }
 
-    setRequestNumber(requestNumber: String) {
+    setRequestNumber(requestNumber: any) {
         this.requestNumber = requestNumber;
     }
 
-    getRequestNumber(): String {
+    getRequestNumber(): any {
         return this.requestNumber;
     }
 
-    setApplication(application: String) {
+    setApplication(application: any) {
         this.application = application;
     }
 
-    getApplication(): String {
+    getApplication(): any {
         return this.application;
     }
 
-    setSubmittedBy(submittedBy: String) {
-        this.submittedBy = submittedBy;
+    setCreatedBy(createdBy: any) {
+        this.createdBy = createdBy;
     }
 
-    getSubmittedBy(): String {
-        return this.submittedBy;
+    getCreatedBy(): any {
+        return this.createdBy;
     }
 
-    setSubmittedDate(submittedDate: String) {
-        this.submittedDate = submittedDate;
-    }
-
-    getSubmittedDate(): String {
-        return this.submittedDate;
-    }
-
-    setJobStatus(jobStatus: String) {
+    setJobStatus(jobStatus: any) {
         this.jobStatus = jobStatus;
     }
 
-    getJobStatus(): String {
+    getJobStatus(): any {
         return this.jobStatus;
     }
 
-    setJobDetails() {
-        this.jobDetails =  {jobId: this.getJobId().toString(), jobType: this.getJobType().toString(),
-            jobParam: this.getJobParam().toString(), startTime: this.getStartTime().toString(),
-            requestType: this.getRequestType().toString(), requestNumber: this.getRequestNumber().toString(),
-            application: this.getApplication().toString(), submittedBy: this.getSubmittedBy().toString(),
-            submittedDate: this.getSubmittedDate().toString(), jobStatus: this.getJobStatus().toString()};
+    setSubmittedBy(submittedBy: any) {
+        this.submittedBy = submittedBy;
     }
 
-    getJobDetails(): any {
-        return this.jobDetails;
+    getSubmittedBy(): any {
+        return this.submittedBy;
     }
+
+    setSubmittedAt(submittedAt: any) {
+        this.submittedAt = submittedAt;
+    }
+
+    getSubmittedAt(): any {
+        return this.submittedAt;
+    }
+
+    // setJobDetails() {
+    //     this.jobDetails =  {jobId: this.getJobId().toString(), jobType: this.getJobType().toString(),
+    //         jobParam: this.getJobParam().toString(), createdAt: this.getCreatedAt().toString(),
+    //         requestType: this.getRequestType().toString(), requestNumber: this.getRequestNumber().toString(),
+    //         application: this.getApplication().toString(), createdBy: this.getCreatedBy().toString(),
+    //         jobStatus: this.getJobStatus().toString(), submittedAt: this.getSubmittedAt().toString,
+    //         submittedBy: this.getSubmittedBy().toString};
+    // }
+
+    // getJobDetails(): any {
+    //     return this.jobDetails;
+    // }
 }

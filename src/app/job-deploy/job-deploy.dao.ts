@@ -20,10 +20,19 @@ export class JobDeployDao {
     constructor(private http: Http) { }
 
     loadNewJob() {
-        return this.http.get('http://localhost:11080/jobDetails', this.requestOptions)
+        return this.http.get('https://localhost:40143/jobSummary/New', this.requestOptions)
             .map(
             (res: Response) => {
+                const response = res.json();
+                return response;
+            }
+            );
+    }
 
+    loadNotNewJob() {
+        return this.http.get('https://localhost:40143/jobSummary/Completed', this.requestOptions)
+            .map(
+            (res: Response) => {
                 const response = res.json();
                 return response;
             }
@@ -33,12 +42,12 @@ export class JobDeployDao {
     buildJob(event: Event) {
         const data = '{ "jobID": "' + event.srcElement.id.toString() + '" }';
         return this.http.post('http://dtl01lnxap01a:10280/buildJob', data, this.requestOptions)
-        .map(
+            .map(
             (res: Response) => {
                 const response = res.json();
                 return response;
             }
-        );
+            );
     }
 
 }

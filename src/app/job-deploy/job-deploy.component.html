@@ -1,23 +1,20 @@
-<div class="container-fluid">
-  <div class="container">
-    <div class="panel panel-secondary">
-      <div class="panel-heading">
-        <button class="btn btn-primary btn-lg" (click)="onClickPaneToggle(true)">New</button>
-        <button class="btn btn-primary btn-lg" (click)="onClickPaneToggle(false)">Current/History</button>
-      </div>
-    </div>
-    <table class="table table-bordered" *ngIf="isNewPaneactive">
+  <div class="container-fluid">
+          <nav class="navbar navbar-default navbar-expand-lg">
+                  <span style="color: #474747; font-weight: bolder; font-size: larger;" class="navbar-header navbar-brand nav-title">JobSummary</span>
+                <div class="nav navbar-nav" style="padding-left: 40px;">
+                    <button class="navbar-btn btn" style="color: #474747; font-weight: bolder; font-size: medium; background: none; background-color: transparent; outline: none;" (click)="onClickPaneToggle(true)">New</button>
+                    <button class="navbar-btn btn" style="color: #474747; padding-left: 40px; font-weight: bolder; font-size: medium; background: none; background-color: transparent; outline: none;" (click)="onClickPaneToggle(false)">Current/History</button>
+                </div>
+            </nav>
+    <table class="table table-bordered" *ngIf="isNewPaneActive">
       <thead>
         <tr>
-          <th>#</th>
+          <th>ID</th>
           <th>Task</th>
-          <!-- <th>Parameter</th> -->
-          <th>Schedule</th>
-          <th>Request</th>
           <th>Ticket</th>
           <th>Application</th>
-          <th>Admin</th>
-          <th>Creation</th>
+          <th>Created By</th>
+          <th>Create On</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -26,31 +23,45 @@
           <tr>
             <td>{{job.getJobId()}}</td>
             <td>{{job.getJobType()}}</td>
-            <!-- <td>{{job.getJobParam()}}</td> -->
-            <td>{{job.getStartTime()}}</td>
-            <td>{{job.getRequestType()}}</td>
             <td>{{job.getRequestNumber()}}</td>
             <td>{{job.getApplication()}}</td>
-            <td>{{job.getSubmittedBy()}}</td>
-            <td>{{job.getSubmittedDate()}}</td>
-            <td><button id={{job.getJobId()}} class="btn btn-danger" (click)="buildJob($event)">Build</button></td>
+            <td>{{job.getCreatedBy()}}</td>
+            <td>{{job.getCreatedAt()}}</td>
+            <td>
+              <button id={{job.getJobId()}} class="btn btn-danger" (click)="buildJob($event)">Build</button>
+            </td>
           </tr>
         </ng-template>
       </tbody>
     </table>
-    <table class="table table-bordered" *ngIf="!isNewPaneactive">
-      <tr>
-        <th>Job ID</th>
-        <th>Task</th>
-        <th>Parameter</th>
-        <th>Impacted CI</th>
-        <th>Request Type</th>
-        <th>RequestNumber</th>
-        <th>Application</th>
-        <th>Submitted By</th>
-        <th>Submitted Date</th>
-        <th>Old</th>
-      </tr>
+    <table class="table table-bordered" *ngIf="!isNewPaneActive">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Task</th>
+          <th>Ticket</th>
+          <th>Application</th>
+          <th>Created By</th>
+          <th>Created On</th>
+          <th>Submitted BY</th>
+          <th>Submitted On</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-job [ngForOf]="jobList">
+          <tr>
+            <td>{{job.getJobId()}}</td>
+            <td>{{job.getJobType()}}</td>
+            <td>{{job.getRequestNumber()}}</td>
+            <td>{{job.getApplication()}}</td>
+            <td>{{job.getCreatedBy()}}</td>
+            <td>{{job.getCreatedAt()}}</td>
+            <td>{{job.getSubmittedBy()}}</td>
+            <td>{{job.getSubmittedAt()}}</td>
+            <td>{{job.getJobStatus()}}</td>
+          </tr>
+        </ng-template>
+      </tbody>
     </table>
   </div>
-</div>
