@@ -33,6 +33,7 @@ export class AuthService {
                 this.loginStatusUpdated.emit({
                     displayName: this.loginForm.getDisplayName(), isLoggedIn: this.loginForm.getLoggedIn()
                   });
+                console.log(response.headers.get('ut'));
             },
             (error: any) => {
                 const err = error.json();

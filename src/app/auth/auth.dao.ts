@@ -23,6 +23,9 @@ export class AuthDAO {
         return this.http.post('https://localhost:10143/login', data, requestOptions)
         .map(
             (res: Response) => {
+                console.log(res.headers.getAll);
+                const header = res.headers.get('ut');
+                console.log(header);
                 const response = res.json();
                 return response;
             }
