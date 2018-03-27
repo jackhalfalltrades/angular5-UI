@@ -1,8 +1,5 @@
-import { LoginForm } from './../signin.model';
 import { Component, OnInit, OnChanges, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-// import { LoginForm } from '../signin.model';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -24,7 +21,7 @@ export class SigninComponent implements OnInit {
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required)
     });
-    this.authService.loginStatusUpdated.emit({ displayName: 'Singin' , isLoggedIn: false });
+    this.authService.loginStatusUpdated.emit({ displayName: 'Singin', isLoggedIn: false });
   }
 
   onChange() {
@@ -44,12 +41,12 @@ export class SigninComponent implements OnInit {
         this.loginRenderer.get('username').value, this.loginRenderer.get('password').value
       );
       this.authService.loginFailed
-      .subscribe(
-        (loginErrorDetails: {loginFailed: boolean, loginError: string}) => {
-          this.loginFailed = loginErrorDetails.loginFailed;
-          this.loginError = loginErrorDetails.loginError;
-        }
-      );
+        .subscribe(
+          (loginErrorDetails: { loginFailed: boolean, loginError: string }) => {
+            this.loginFailed = loginErrorDetails.loginFailed;
+            this.loginError = loginErrorDetails.loginError;
+          }
+        );
     }
   }
 }

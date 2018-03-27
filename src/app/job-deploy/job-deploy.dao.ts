@@ -1,6 +1,6 @@
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -20,20 +20,20 @@ export class JobDeployDao {
     loadNewJob() {
         return this.http.get('https://localhost:40143/jobSummary/New', this.requestOptions)
             .map(
-            (res: Response) => {
-                const response = res.json();
-                return response;
-            }
+                (res: Response) => {
+                    const response = res.json();
+                    return response;
+                }
             );
     }
 
     loadNotNewJob() {
         return this.http.get('https://localhost:40143/jobSummary/Completed', this.requestOptions)
             .map(
-            (res: Response) => {
-                const response = res.json();
-                return response;
-            }
+                (res: Response) => {
+                    const response = res.json();
+                    return response;
+                }
             );
     }
 
@@ -41,10 +41,10 @@ export class JobDeployDao {
         const data = '{ "jobID": "' + event.srcElement.id.toString() + '" }';
         return this.http.post('http://dtl01lnxap01a:10280/buildJob', data, this.requestOptions)
             .map(
-            (res: Response) => {
-                const response = res.json();
-                return response;
-            }
+                (res: Response) => {
+                    const response = res.json();
+                    return response;
+                }
             );
     }
 

@@ -1,13 +1,13 @@
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings, MultiselectDropdown } from 'angular-2-dropdown-multiselect';
 
 export class JobCreateModel {
-  userName= '';
-  ticketNumber= '';
-  cerNo= '';
-  spid= '';
-  impactedCi= '';
+  userName = '';
+  ticketNumber = '';
+  cerNo = '';
+  spid = '';
+  impactedCi = '';
   isValidTicketNumber: boolean;
-  jobID= '';
+  jobID = '';
 
   // Dropdown Options displayed on screen
   requestTypeOptions: IMultiSelectOption[];
@@ -28,15 +28,15 @@ export class JobCreateModel {
   selectedRequestTypeOptions: any[];
   selectedApplicationOptions: any[];
   selectedEnvironmentOptions: any[] = ['default'];
-  selectedTypeOptions: any[]= ['default'];
-  selectedTechnologyOptions: any[]= ['default'];
-  selectedModeOptions: any[]= ['default'];
-  selectedDomainOptions: any[]= ['default'];
-  selectedClusterOptions: any[]= ['default'];
-  selectedVmOptions: any[]= ['default'];
-  selectedJvmOptions: any[]= ['default'];
-  selectedTaskOptions: any[]= ['default'];
-  selectedArtifactOptions: any[]= ['default'];
+  selectedTypeOptions: any[] = ['default'];
+  selectedTechnologyOptions: any[] = ['default'];
+  selectedModeOptions: any[] = ['default'];
+  selectedDomainOptions: any[] = ['default'];
+  selectedClusterOptions: any[] = ['default'];
+  selectedVmOptions: any[] = ['default'];
+  selectedJvmOptions: any[] = ['default'];
+  selectedTaskOptions: any[] = ['default'];
+  selectedArtifactOptions: any[] = ['default'];
   selectedArtifactPathOptions: any[] = ['default'];
 
   // Dropdown Options selected from displayed (only the ID will be available)
@@ -96,10 +96,10 @@ export class JobCreateModel {
     defaultTitle: 'Select Options',
   };
 
-  constructor() {}
+  constructor() { }
 
 
-  setUserName( userName: string ) {
+  setUserName(userName: string) {
     this.userName = userName;
   }
 
@@ -107,7 +107,7 @@ export class JobCreateModel {
     return this.userName;
   }
 
-  setTicketNumber( ticketNumber: string) {
+  setTicketNumber(ticketNumber: string) {
     this.ticketNumber = ticketNumber;
   }
 
@@ -115,7 +115,7 @@ export class JobCreateModel {
     return this.ticketNumber;
   }
 
-  setCerNo( cerNo: string ) {
+  setCerNo(cerNo: string) {
     this.cerNo = cerNo;
   }
 
@@ -123,7 +123,7 @@ export class JobCreateModel {
     return this.cerNo;
   }
 
-  setSpid( spid: string ) {
+  setSpid(spid: string) {
     this.spid = spid;
   }
 
@@ -131,7 +131,7 @@ export class JobCreateModel {
     return this.spid;
   }
 
-  setImpactedCi( impactedCi: string ) {
+  setImpactedCi(impactedCi: string) {
     this.impactedCi = impactedCi;
   }
 
@@ -159,7 +159,7 @@ export class JobCreateModel {
     return this.selectTextRenderer;
   }
 
-  setRequestTypeOptions( requestTypeOptions: IMultiSelectOption[] ) {
+  setRequestTypeOptions(requestTypeOptions: IMultiSelectOption[]) {
     this.requestTypeOptions = requestTypeOptions;
   }
 
@@ -167,7 +167,7 @@ export class JobCreateModel {
     return this.requestTypeOptions;
   }
 
-  setApplicationOptions( applicationOptions: IMultiSelectOption[] ) {
+  setApplicationOptions(applicationOptions: IMultiSelectOption[]) {
     this.applicationOptions = applicationOptions;
   }
 
@@ -175,7 +175,7 @@ export class JobCreateModel {
     return this.applicationOptions;
   }
 
-  setEnvironmentOptions( environmentOptions: IMultiSelectOption[] ) {
+  setEnvironmentOptions(environmentOptions: IMultiSelectOption[]) {
     this.environmentOptions = environmentOptions;
   }
 
@@ -183,15 +183,15 @@ export class JobCreateModel {
     return this.environmentOptions;
   }
 
-  setVmOptions( vmOptions: IMultiSelectOption[] ) {
-    this.vmOptions  = vmOptions ;
+  setVmOptions(vmOptions: IMultiSelectOption[]) {
+    this.vmOptions = vmOptions;
   }
 
   getVmOptions(): IMultiSelectOption[] {
     return this.vmOptions;
   }
 
-  setJvmOptions( jvmOptions: IMultiSelectOption[] ) {
+  setJvmOptions(jvmOptions: IMultiSelectOption[]) {
     this.jvmOptions = jvmOptions;
   }
 
@@ -199,7 +199,7 @@ export class JobCreateModel {
     return this.jvmOptions;
   }
 
-  setTaskOptions( taskOptions: IMultiSelectOption[] ) {
+  setTaskOptions(taskOptions: IMultiSelectOption[]) {
     this.taskOptions = taskOptions;
   }
 
@@ -207,7 +207,7 @@ export class JobCreateModel {
     return this.taskOptions;
   }
 
-  setArtifactOptions( artifactOptions: IMultiSelectOption[] ) {
+  setArtifactOptions(artifactOptions: IMultiSelectOption[]) {
     this.artifactOptions = artifactOptions;
   }
 
@@ -215,7 +215,7 @@ export class JobCreateModel {
     return this.artifactOptions;
   }
 
-  setArtifactPathOptions( artifactPathOptions: IMultiSelectOption[] ) {
+  setArtifactPathOptions(artifactPathOptions: IMultiSelectOption[]) {
     this.artifactPathOptions = artifactPathOptions;
   }
 
@@ -223,7 +223,7 @@ export class JobCreateModel {
     return this.artifactPathOptions;
   }
 
-  setTypeOptions( typeOptions: IMultiSelectOption[] ) {
+  setTypeOptions(typeOptions: IMultiSelectOption[]) {
     this.typeOptions = typeOptions;
   }
 
@@ -231,7 +231,7 @@ export class JobCreateModel {
     return this.typeOptions;
   }
 
-  setTechnologyOptions( technologyOptions: IMultiSelectOption[] ) {
+  setTechnologyOptions(technologyOptions: IMultiSelectOption[]) {
     this.technologyOptions = technologyOptions;
   }
 
@@ -239,7 +239,7 @@ export class JobCreateModel {
     return this.technologyOptions;
   }
 
-  setModeOptions( modeOptions: IMultiSelectOption[] ) {
+  setModeOptions(modeOptions: IMultiSelectOption[]) {
     this.modeOptions = modeOptions;
   }
 
@@ -247,7 +247,7 @@ export class JobCreateModel {
     return this.modeOptions;
   }
 
-  setDomainOptions( domainOptions: IMultiSelectOption[] ) {
+  setDomainOptions(domainOptions: IMultiSelectOption[]) {
     this.domainOptions = domainOptions;
   }
 
@@ -255,7 +255,7 @@ export class JobCreateModel {
     return this.domainOptions;
   }
 
-  setClusterOptions( clusterOptions: IMultiSelectOption[] ) {
+  setClusterOptions(clusterOptions: IMultiSelectOption[]) {
     this.clusterOptions = clusterOptions;
   }
 
@@ -263,7 +263,7 @@ export class JobCreateModel {
     return this.clusterOptions;
   }
 
-  setRequestTypeOptionsModel( requestTypeOptionsModel: IMultiSelectOption[] ) {
+  setRequestTypeOptionsModel(requestTypeOptionsModel: IMultiSelectOption[]) {
     this.requestTypeOptionsModel = requestTypeOptionsModel;
   }
 
@@ -271,7 +271,7 @@ export class JobCreateModel {
     return this.requestTypeOptionsModel;
   }
 
-  setApplicationOptionsModel( applicationOptionsModel: IMultiSelectOption[]) {
+  setApplicationOptionsModel(applicationOptionsModel: IMultiSelectOption[]) {
     this.applicationOptionsModel = applicationOptionsModel;
   }
 
@@ -279,7 +279,7 @@ export class JobCreateModel {
     return this.applicationOptionsModel;
   }
 
-  setEnvironmentOptionsModel( environmentOptionsModel: IMultiSelectOption[] ) {
+  setEnvironmentOptionsModel(environmentOptionsModel: IMultiSelectOption[]) {
     this.environmentOptionsModel = environmentOptionsModel;
   }
 
@@ -287,15 +287,15 @@ export class JobCreateModel {
     return this.environmentOptionsModel;
   }
 
-  setVmOptionsModel( vmOptionsModel: IMultiSelectOption[] ) {
-    this.vmOptionsModel = vmOptionsModel ;
+  setVmOptionsModel(vmOptionsModel: IMultiSelectOption[]) {
+    this.vmOptionsModel = vmOptionsModel;
   }
 
   getVmOptionsModel(): IMultiSelectOption[] {
     return this.vmOptionsModel;
   }
 
-  setJvmOptionsModel( jvmOptionsModel: IMultiSelectOption[] ) {
+  setJvmOptionsModel(jvmOptionsModel: IMultiSelectOption[]) {
     this.jvmOptionsModel = jvmOptionsModel;
   }
 
@@ -303,7 +303,7 @@ export class JobCreateModel {
     return this.jvmOptionsModel;
   }
 
-  setTaskOptionsModel( taskOptionsModel: IMultiSelectOption[] ) {
+  setTaskOptionsModel(taskOptionsModel: IMultiSelectOption[]) {
     this.taskOptionsModel = taskOptionsModel;
   }
 
@@ -311,7 +311,7 @@ export class JobCreateModel {
     return this.taskOptionsModel;
   }
 
-  setArtifactOptionsModel( artifactOptionsModel: IMultiSelectOption[] ) {
+  setArtifactOptionsModel(artifactOptionsModel: IMultiSelectOption[]) {
     this.artifactOptionsModel = artifactOptionsModel;
   }
 
@@ -319,7 +319,7 @@ export class JobCreateModel {
     return this.artifactOptionsModel;
   }
 
-  setArtifactPathOptionsModel( artifactPathOptionsModel: IMultiSelectOption[] ) {
+  setArtifactPathOptionsModel(artifactPathOptionsModel: IMultiSelectOption[]) {
     this.artifactPathOptionsModel = artifactPathOptionsModel;
   }
 
@@ -327,7 +327,7 @@ export class JobCreateModel {
     return this.artifactPathOptionsModel;
   }
 
-  setTypeOptionsModel( typeOptionsModel: IMultiSelectOption[] ) {
+  setTypeOptionsModel(typeOptionsModel: IMultiSelectOption[]) {
     this.typeOptionsModel = typeOptionsModel;
   }
 
@@ -335,7 +335,7 @@ export class JobCreateModel {
     return this.typeOptionsModel;
   }
 
-  setTechnologyOptionsModel( technologyOptionsModel: IMultiSelectOption[] ) {
+  setTechnologyOptionsModel(technologyOptionsModel: IMultiSelectOption[]) {
     this.technologyOptionsModel = technologyOptionsModel;
   }
 
@@ -343,7 +343,7 @@ export class JobCreateModel {
     return this.technologyOptionsModel;
   }
 
-  setModeOptionsModel( modeOptionsModel: IMultiSelectOption[] ) {
+  setModeOptionsModel(modeOptionsModel: IMultiSelectOption[]) {
     this.modeOptionsModel = modeOptionsModel;
   }
 
@@ -351,7 +351,7 @@ export class JobCreateModel {
     return this.modeOptionsModel;
   }
 
-  setDomainOptionsModel( domainOptionsModel: IMultiSelectOption[] ) {
+  setDomainOptionsModel(domainOptionsModel: IMultiSelectOption[]) {
     this.domainOptionsModel = domainOptionsModel;
   }
 
@@ -359,7 +359,7 @@ export class JobCreateModel {
     return this.domainOptionsModel;
   }
 
-  setClusterOptionsModel( clusterOptionsModel: IMultiSelectOption[] ) {
+  setClusterOptionsModel(clusterOptionsModel: IMultiSelectOption[]) {
     this.clusterOptionsModel = clusterOptionsModel;
   }
 
@@ -367,7 +367,7 @@ export class JobCreateModel {
     return this.clusterOptionsModel;
   }
 
-  setSelectedRequestTypeOptions( selectedRequestTypeOptions: any[] ) {
+  setSelectedRequestTypeOptions(selectedRequestTypeOptions: any[]) {
     this.selectedRequestTypeOptions = selectedRequestTypeOptions;
   }
 
@@ -379,7 +379,7 @@ export class JobCreateModel {
     return this.selectedApplicationOptions;
   }
 
-  setSelectedApplicationOptions( selectedApplicationOptions: any[] ) {
+  setSelectedApplicationOptions(selectedApplicationOptions: any[]) {
     this.selectedApplicationOptions = selectedApplicationOptions;
   }
 
@@ -387,14 +387,14 @@ export class JobCreateModel {
     return this.selectedEnvironmentOptions;
   }
 
-  setSelectedEnvironmentOptions( selectedEnvironmentOptions: any[]) {
+  setSelectedEnvironmentOptions(selectedEnvironmentOptions: any[]) {
     this.selectedEnvironmentOptions = selectedEnvironmentOptions;
   }
   getSelectedTypeOptions(): any[] {
     return this.selectedTypeOptions;
   }
 
-  setSelectedTypeOptions( selectedTypeOptions: any[] ) {
+  setSelectedTypeOptions(selectedTypeOptions: any[]) {
     this.selectedTypeOptions = selectedTypeOptions;
   }
 
@@ -402,7 +402,7 @@ export class JobCreateModel {
     return this.selectedTechnologyOptions;
   }
 
-  setSelectedTechnologyOptions( selectedTechnologyOptions: any[] ) {
+  setSelectedTechnologyOptions(selectedTechnologyOptions: any[]) {
     this.selectedTechnologyOptions = selectedTechnologyOptions;
   }
 
@@ -410,7 +410,7 @@ export class JobCreateModel {
     return this.selectedModeOptions;
   }
 
-  setSelectedModeOptions(  selectedModeOptions: any[] ) {
+  setSelectedModeOptions(selectedModeOptions: any[]) {
     this.selectedModeOptions = selectedModeOptions;
   }
 
@@ -418,7 +418,7 @@ export class JobCreateModel {
     return this.selectedDomainOptions;
   }
 
-  setSelectedDomainOptions( selectedDomainOptions: any[] ) {
+  setSelectedDomainOptions(selectedDomainOptions: any[]) {
     this.selectedDomainOptions = selectedDomainOptions;
   }
 
@@ -426,7 +426,7 @@ export class JobCreateModel {
     return this.selectedClusterOptions;
   }
 
-  setSelectedClusterOptions( selectedClusterOptions: any[] ) {
+  setSelectedClusterOptions(selectedClusterOptions: any[]) {
     this.selectedClusterOptions = selectedClusterOptions;
   }
 
@@ -434,7 +434,7 @@ export class JobCreateModel {
     return this.selectedVmOptions;
   }
 
-  setSelectedVmOptions( selectedVmOptions: any[] ) {
+  setSelectedVmOptions(selectedVmOptions: any[]) {
     this.selectedVmOptions = selectedVmOptions;
   }
 
@@ -442,7 +442,7 @@ export class JobCreateModel {
     return this.selectedJvmOptions;
   }
 
-  setSelectedJvmOptions( selectedJvmOptions: any[] ) {
+  setSelectedJvmOptions(selectedJvmOptions: any[]) {
     this.selectedJvmOptions = selectedJvmOptions;
   }
 
@@ -450,7 +450,7 @@ export class JobCreateModel {
     return this.selectedTaskOptions;
   }
 
-  setSelectedTaskOptions( selectedTaskOptions: any[] ) {
+  setSelectedTaskOptions(selectedTaskOptions: any[]) {
     this.selectedTaskOptions = selectedTaskOptions;
   }
 
@@ -458,7 +458,7 @@ export class JobCreateModel {
     return this.selectedArtifactOptions;
   }
 
-  setSelectedArtifactOptions( selectedArtifactOptions: String[] ) {
+  setSelectedArtifactOptions(selectedArtifactOptions: String[]) {
     this.selectedArtifactOptions = selectedArtifactOptions;
   }
 
@@ -466,7 +466,7 @@ export class JobCreateModel {
     return this.selectedArtifactPathOptions;
   }
 
-  setSelectedArtifactPathOptions( selectedArtifactPathOptions: any[] ) {
+  setSelectedArtifactPathOptions(selectedArtifactPathOptions: any[]) {
     this.selectedArtifactPathOptions = selectedArtifactPathOptions;
   }
 

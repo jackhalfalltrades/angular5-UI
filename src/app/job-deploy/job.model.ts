@@ -1,6 +1,6 @@
 export class Job {
 
-    constructor() {}
+    constructor() { }
 
     jobId: any;
     jobType: any;
@@ -14,9 +14,11 @@ export class Job {
     submittedBy: any;
     submittedAt: any;
 
-    jobDetails: {jobId: any, jobType: any, jobParam: any, createdAt: any, requestType: any,
+    jobDetails: {
+        jobId: any, jobType: any, jobParam: any, createdAt: any, requestType: any,
         requestNumber: any, application: any, createdBy: any, jobStatus: any,
-        submittedBy: any, submittedAt: any};
+        submittedBy: any, submittedAt: any
+    };
 
     setJobId(jobId: any) {
         this.jobId = jobId;

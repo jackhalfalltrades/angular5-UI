@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 
-export class LoginForm {
+export class UserDetails {
     loggedIn =  false;
     firstName = '';
     lastName = '';

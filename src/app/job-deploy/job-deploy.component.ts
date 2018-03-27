@@ -1,8 +1,8 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 import { Job } from './job.model';
 import { JobDeployDao } from './job-deploy.dao';
-import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-deploy',
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   providers: [JobDeployDao]
 })
 export class JobDeployComponent implements OnInit {
+
   isNewPaneActive: boolean;
   jobStatus: String;
   jobList: Job[] = [];
@@ -104,7 +105,7 @@ export class JobDeployComponent implements OnInit {
       .subscribe(
       (response) => {
         alert('Job: ' + response['jobID'] + 'status: ' + response['status']);
-        this.router.navigate(['/jobDeploy']);
+        this.router.navigate(['jobDeploy']);
       }
     );
   }

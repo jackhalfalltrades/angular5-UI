@@ -1,13 +1,14 @@
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { JobCreateDao } from './jobCreate.dao';
 import { JobCreateModel } from './jobCreate.model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, OnChanges } from '@angular/core';
+
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings, MultiselectDropdown } from 'angular-2-dropdown-multiselect';
 
 import { AuthService } from './../auth/auth.service';
-import { JobCreateService } from './jobcreate.service';
 import { Validator } from './jobcreate.validator';
-import { DISABLED, VALID } from '@angular/forms/src/model';
+import { JobCreateService } from './jobcreate.service';
 
 @Component({
   selector: 'app-jobcreate',
@@ -16,28 +17,25 @@ import { DISABLED, VALID } from '@angular/forms/src/model';
   providers: [JobCreateService, JobCreateDao, Validator]
 })
 export class JobcreateComponent implements OnInit {
+
   jobRenderer: FormGroup;
   jobCreateModel: JobCreateModel;
-  multiSelectOptionModel: IMultiSelectOption[];
-  formValidation = {s: '', isValid: true, isrequestType: false, isTicketNumber: false};
+  formValidation = { s: '', isValid: true, isrequestType: false, isTicketNumber: false };
   isFormEnabled = false;
-  jobCreateResponse: any;
 
   constructor(private jobCreateService: JobCreateService, private validator: Validator) { }
 
   ngOnInit() {
-
     this.jobCreateModel = this.jobCreateService.jobCreateRenderer();
-
     this.jobRenderer = new FormGroup({
       'userName': new FormControl(this.jobCreateModel.getUserName()),
       'requestTypeOptionsModel': new FormControl(this.jobCreateModel.getRequestTypeOptionsModel(), Validators.required),
       'ticketNumber': new FormControl(null, [Validators.required, Validators.minLength(10),
-                                             Validators.maxLength(10)]),
+      Validators.maxLength(10)]),
       'cerNo': new FormControl(null),
       'spid': new FormControl(null),
       'impactedCi': new FormControl(null),
-      'applicationOptionsModel': new FormControl({value: null, disabled: true }, Validators.required),
+      'applicationOptionsModel': new FormControl({ value: null, disabled: true }, Validators.required),
       'environmentOptionsModel': new FormControl(null, Validators.required),
       'typeOptionsModel': new FormControl(null, Validators.required),
       /* 'technologyOptionsModel': new FormControl(null, Validators.required),
@@ -50,28 +48,25 @@ export class JobcreateComponent implements OnInit {
       'artifactOptionsModel': new FormControl(null, Validators.required),
       'artifactPathOptionsModel': new FormControl(null, Validators.required)
     });
-
     this.formValidation = this.validator.validateForm(this.jobRenderer, this.jobCreateModel);
-
     this.jobRenderer.controls['requestTypeOptionsModel'].valueChanges
       .subscribe(
-      (selectedOptions: any[]) => {
-        if (selectedOptions[0]) {
-          this.jobCreateModel.setSelectedRequestTypeOptions(selectedOptions);
-        } else {
-          this.jobCreateModel.setSelectedRequestTypeOptions([]);
+        (selectedOptions: any[]) => {
+          if (selectedOptions[0]) {
+            this.jobCreateModel.setSelectedRequestTypeOptions(selectedOptions);
+          } else {
+            this.jobCreateModel.setSelectedRequestTypeOptions([]);
+          }
+          this.formValidation = this.validator.validateForm(this.jobRenderer, this.jobCreateModel);
         }
-        this.formValidation = this.validator.validateForm(this.jobRenderer, this.jobCreateModel);
-      }
       );
     this.jobRenderer.controls['ticketNumber'].valueChanges
       .subscribe(
-      (value: any[]) => {
-        this.jobCreateModel.setTicketNumber(value.toString());
-        this.formValidation = this.validator.validateForm(this.jobRenderer, this.jobCreateModel);
-      }
+        (value: any[]) => {
+          this.jobCreateModel.setTicketNumber(value.toString());
+          this.formValidation = this.validator.validateForm(this.jobRenderer, this.jobCreateModel);
+        }
       );
-
     this.jobRenderer.controls['applicationOptionsModel'].valueChanges
       .subscribe((selectedOptions: any[]) => {
         if (selectedOptions[0]) {
@@ -87,7 +82,6 @@ export class JobcreateComponent implements OnInit {
           this.jobRenderer.controls['environmentOptionsModel'].setValue([], { emitEvent: true });
         }
       });
-
     this.jobRenderer.controls['environmentOptionsModel'].valueChanges
       .subscribe((selectedOptions: number[]) => {
         if (selectedOptions[0]) {
@@ -253,25 +247,21 @@ export class JobcreateComponent implements OnInit {
             .setValue([], { emitevent: true });
         }
       });
-
-      // enalbing the form submit option ony of form is valid
-      this.jobRenderer.statusChanges
+    // enalbing the form submit option ony of form is valid
+    this.jobRenderer.statusChanges
       .subscribe(
         (observer: any) => {
           observer.toString() === 'VALID' ? this.isFormEnabled = true : this.isFormEnabled = false;
-        }
-      );
+        });
   }
 
   onSubmit() {
-    console.log(this.jobRenderer);
     this.jobCreateService.createJob(this.jobRenderer, this.jobCreateModel);
   }
 
   onReset() {
     this.jobRenderer.reset();
   }
-
 }
 
 
