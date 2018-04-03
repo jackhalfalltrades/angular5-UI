@@ -42,7 +42,8 @@ export class JobDeployDao {
     buildJob(event: Event) {
 
         const data = '{ "jobID": "' + event.srcElement.id.toString() + '", "userID: "' + this.authService.userDetails.getUserId() + '" }';
-        return this.http.post('http://dtl01lnxap01a:10280/buildJob', data, this.requestOptions)
+        const ansibleServer = 'remote server hostname where ansible python script is residing';
+        return this.http.post('http://' + ansibleServer + ':10280/buildJob', data, this.requestOptions)
             .map(
                 (res: Response) => {
                     const response = res.json();
